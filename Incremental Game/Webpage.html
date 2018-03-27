@@ -1,0 +1,130 @@
+<link rel="stylesheet" type="text/css" href="SS.css" media="screen" />
+<script src="js.js"></script>
+<html>
+<header> </header>
+
+<body>
+	<div id = "backContainer">
+	    <div id = "mainContainer">
+		
+			<div id = "centerContainer"> 
+				<div id = "topBox">
+				
+				</div>
+				
+				<div id = "topBox2">
+					<p> Food : 10 </p>
+					<p> Water: 10 </p>
+				</div>
+
+				<div id = "mainPanelContainer">
+				
+					<!---------- Tabs go here ---------->
+					<ul class = "tabs"> 
+						<li id = "darkContainer" class = "tabButtons" isVisible = "true">
+							<p onclick = changeView("darkView") isVisible = "true">Darkness</p>
+						</li>
+						
+						<li id = "roomContainer" class = "tabButtons" isVisible = "false">
+							<p onclick = changeView("roomView")>Room</p>
+						</li>
+						
+						<li id = "crawlSpaceContainer" class = "tabButtons" isVisible = "false">
+							<p onclick = changeView("crawlSpaceView")>Crawl Space</p>
+						</li>
+						
+						<li id = "corridorContainer" class = "tabButtons" isVisible = "false"">
+							<p onclick = changeView("corridorView")>Corridor</p>
+						</li>
+					</ul>
+					<!---------- Tabs end here ---------->
+					
+					<!---------- Main Panel Views go here ---------->
+					<!-- Dark Room View -->
+					<div id = "darkView" class = "mainPanelView" isVisible = "true">
+						<div class = "viewContainerTitle">
+							<p class = "panelTitle">A dark room</p>
+							<p class = "panelSubTitle">
+							The room is freezing. You can't see anything in the dark. 
+							</p>
+						</div>
+						
+						<div class = "viewContainerMain">
+							<div class = "leftViewPanel">
+								<ul class = "actionBar">
+									<li id = "feelAB" class = "actionButton" onclick = updateLog(getStoryPrompt("feelAB")) timesClicked = 0>
+										<p>Feel Around</p>
+									</li>
+									
+									<li id = "flashAB" class = "actionButton" onclick = lightsOn()>
+										<p>Flashlight</p>
+									</li>
+
+								</ul>
+							</div>
+							
+							<div class = "rightViewPanel">
+							
+							</div>
+						</div>
+					</div>
+					<!-- Room View -->
+					<div id = "roomView" class = "mainPanelView" isVisible = "false"> 
+						<div class = "viewContainerTitle"> 
+							<p class = "panelTitle">The Room</p>
+							<p class = "panelSubTitle">
+							It's dark and drab. The tube you climbed out of is in the corner. The floor is still wet from when it opened.
+							There's a small hole in one of the walls with a dripping sound coming from it.
+							</p>
+						</div>
+
+						<div class = "viewContainerMain">
+							<div class = "leftViewPanel">
+								<ul class = "actionBar">
+									<li class = "actionButton" id = "doorAB" onclick = doorAction()><p>Door</p></li>
+									<li class = "actionButton" id = "holeAB" onclick = holeAction()><p>Hole</p></li>
+									<li class = "actionButton" id = "wallAB" onclick = wallAction()><p>Wall</p></li>
+									<li class = "actionButton" id = "sleepAB" onclick = sleepAction()><p>Tube</p></li>
+								</ul>
+							</div>
+							
+							<div class = "rightViewPanel">
+							
+							</div>
+						</div>
+					</div>
+					<!-- Crawl Space View -->
+					<div id = "crawlSpaceView" class = "mainPanelView" isVisible = "false">
+					</div>
+					<!-- Corridor View -->
+					<div id = "corridorView" class = "mainPanelView" isVisible = "false">
+						<div class = "viewContainerTitle"> 
+							<p class = "panelTitle">The corridor</p>
+							<p class = "panelSubTitle">
+							A stone corridor. There's 6 doors. 
+							</p>
+						</div>
+					</div>
+					<!-- Camp View -->
+					<div id = "campView" class = "mainPanelView" isVisible = "false">
+					</div>
+					<!---------- Main Panel Views end here --------->
+				</div>
+				
+			</div>
+		
+			<div id = "sideContainer">
+				<div id = "logBox">
+					<ul id = "logList">
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+
+<footer>
+</footer>
+
+</html>
