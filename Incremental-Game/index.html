@@ -1,0 +1,220 @@
+<html>
+	<header>
+		<link rel = "stylesheet" type="text/css" href="SS.css" media="screen" />
+		<script src="systemFunctions.js"></script>
+		<script src="storyEvents.js"></script>
+		<script src="resourceEvents.js"></script>
+		<script src="firstRoomEvents.js"></script>
+	</header>
+
+	<body>
+	<audio id = "alarm" class = "audio" src="Alarm.ogg" ></audio>
+
+		<div id = "backContainer">
+			<div id = "mainContainer">
+			
+				<div id = "centerContainer"> 
+					<div id = "topConsole" style = display:block > 
+						<p id = "consoleDisplay"> - No data - </p>
+						<p></p>
+						<input type = "text" onfocus="this.value='> '" id = "consoleInput" size = 23 maxlength = 40 overflow = hidden onkeypress="return runScript(event) "> </input>
+					</div>
+					
+					<div class = "topBox">
+						<p id = "food" class = "resourceCounter" isVisible = "true" style = display:block>Food: 0</p>
+						<p id = "water" class = "resourceCounter" isVisible = "true" style = display:block>Water: 0</p>
+						<p id = "wood" class = "resourceCounter" isVisible = "false" style = display:none>Wood: 0</p>
+						<p id = "metal" class = "resourceCounter" isVisible = "false" style = display:none>Metal: 0</p>
+						<p id = "cloth" class = "resourceCounter" isVisible = "false" style = display:none>Cloth: 0</p>
+					</div>
+					
+					<div class = "topBox">
+					
+					</div>
+
+					<div id = "mainPanelContainer">
+						<!---------- Tabs go here ---------->
+						<ul class = "tabs"> 
+							<li id = "darkContainer" class = "tabButtons" isVisible = "false"  style = display:block >
+								<p onclick = changeView("darkView") isVisible = "true">Darkness</p>
+							</li>
+							
+							<li id = "roomContainer" class = "tabButtons" isVisible = "true" style = display:block>
+								<p onclick = changeView("roomView")>Your Room</p>
+							</li>
+							
+							<li id = "crawlSpaceContainer" class = "tabButtons" isVisible = "false" style = display:none>
+								<p onclick = changeView("crawlSpaceView")>Crawl Space</p>
+							</li>
+							
+							<li id = "corridorContainer" class = "tabButtons" isVisible = "false" style = display:none >
+								<p onclick = changeView("corridorView")>Corridor</p>
+							</li>
+							
+							<li id = "consoleContainer" class = "tabButtons" isVisible = "false" style = display:none>
+								<p onclick = changeView("consoleView")>Console Room</p>
+							</li>
+							
+							<li id = "workshopContainer" class = "tabButtons" isVisible = "false" style = display:none>
+								<p onclick = changeView("workshopView")>Workshop</p>
+							</li>
+							
+							<li id = "campContainer" class = "tabButtons" isVisible = "false" style = display:none>
+								<p onclick = changeView("campView")>Outside</p>
+							</li>
+						</ul>
+						<div id = "divider"> </div>
+						<!---------- Tabs end here ---------->
+						
+						<!---------- Main Panel Views go here ---------->
+						<!-- Dark Room View -->
+						<div id = "darkView" class = "mainPanelView" isVisible = "true" style = display:block relatedCont = "darkContainer">
+							
+							<div class = "viewContainerTitle">
+								<p class = "panelTitle">A dark room</p>
+								<p class = "panelSubTitle">
+								The room is freezing. You can't see anything in the dark. 
+								</p>
+							</div>
+							
+							<div class = "viewContainerMain">
+								<div class = "leftViewPanel">
+									<ul class = "actionBar">
+										<li id = "alarmAB" class = "actionButton" onclick = startEvent() style = display:block >
+											<p>Test Alarm</p>
+										</li>
+										
+										<li id = "feelAB" class = "actionButton" onclick = updateLog(getStoryPrompt("feelAB")) timesClicked = 0 style = display:block >
+											<p>Feel Around</p>
+										</li>
+										
+										<li id = "flashAB" class = "actionButton" onclick = lightsOn() isVisible = "false"  style = display:none>
+											<p>Flashlight</p>
+										</li>
+
+									</ul>
+								</div>
+								
+								<div class = "rightViewPanel">
+								
+								</div>
+							</div>
+						</div>
+						<!-- Room View -->
+						<div id = "roomView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "roomContainer"> 
+							<div class = "viewContainerTitle"> 
+								<p class = "panelTitle">The Room</p>
+								<p class = "panelSubTitle">
+								It's dark and drab. The tube you climbed out of is embedded in the opposite wall. The floor is still wet from when it opened.
+								There's a small hole in one of the walls with a dripping sound coming from it.
+								</p>
+							</div>
+
+							<div class = "viewContainerMain">
+								<div class = "leftViewPanel">
+									<ul class = "actionBar">
+									<li class = "actionButton" id = "tubeAB" onclick = tubeAction() timesClicked = 0 isVisible = "true" style = display:block><p>Tube</p></li>
+										<li class = "actionButton" id = "H-120-04" onclick = firstDoorAction(this.id) timesClicked = 0 isLocked = "false" conRoom = "corridorView" isVisible = "false" style = display:none><p>Door</p></li>
+										<li class = "actionButton" id = "holeAB" onclick = updateLog(holeAction()) timesClicked = 0 isVisible = "false" style = display:none><p>Hole</p></li>
+										
+									</ul>
+								</div>
+								
+								<div class = "rightViewPanel">
+									<ul class = "actionBar">
+										<li class = "actionButton buyButton" id = "chiselBB" isVisible = "false" isActive = "true" onclick = attemptBuy("chiselBB", "chiselTT")>
+											<p>Makeshift Chisel</p>
+											<span id = "chiselTT" class="tooltiptext">1 Metal 1 Cloth</span>
+										</li>
+										<li class = "actionButton buyButton" id = "hammerBB" isVisible = "false" onclick = attemptBuy("hammer", "hammerTT")><p>Hammer</p><span id = "hammerTT" class="tooltiptext">5 Wood</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- Crawl Space View -->
+						<div id = "crawlSpaceView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "crawlSpaceContainer">
+							<div class = "viewContainerTitle"> 
+								<p class = "panelTitle">The Crawlspace</p>
+								<p class = "panelSubTitle">
+								The narrow crawl space isn't tall enough to let you stand up, you have to crawl to move along it. 
+								The place is damp and covered in the green moss you've been eating. There's no clear source of the water. 
+								</p>
+							</div>
+						</div>
+						<!-- Corridor View -->
+						<div id = "corridorView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "corridorContainer">
+							<div class = "viewContainerTitle"> 
+								<p class = "panelTitle">The corridor</p>
+								<p class = "panelSubTitle">
+								A stone corridor. There's 6 doors leading off from it.  
+								</p>
+							</div>
+							
+							<div class = "viewContainerMain">
+								<div class = "leftViewPanel">
+									<ul class = "actionBar">
+										<li class = "actionButton" id = "H-120-04" isLocked = 'false' onclick = openDoor("H-120-04") conRoom = "roomView"><p>Your Room</p></li>
+										<li class = "actionButton" id = "H-120-E" isLocked = 'true' onclick = openDoor("H-120-E") conRoom = "campView"><p>Far Door</p></li>
+										<li class = "actionButton" id = "H-120-03" isLocked = 'true' onclick = openDoor("H-120-03") conRoom = "null"><p>Right Room 1</p></li>
+										<li class = "actionButton" id = "H-120-02" isLocked = 'true' onclick = openDoor("H-120-02") conRoom = "null"><p>Left Room 1</p></li>
+										<li class = "actionButton" id = "H-120-01" isLocked = 'true' onclick = openDoor("H-120-01") conRoom = "null"><p>Right Room 2</p></li>
+										<li class = "actionButton" id = "H-120-C" isLocked = 'true' onclick = openDoor("H-120-C") conRoom = "consoleView"><p>Left Room 2</p></li>
+									</ul>
+								</div>
+								
+								<div class = "rightViewPanel">
+								
+								</div>
+							</div>
+						</div>
+						<!-- Camp View -->
+						<div id = "consoleView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "consoleContainer">
+							<div class = "viewContainerTitle"> 
+								<p class = "panelTitle">The Mainframe</p>
+								<p class = "panelSubTitle">
+								A small room, lit by a single red overhead bulb. Two long strip lights run the length of the roof but give no light. 
+								A desk with 3 large monitors sits against one of the walls with wires disappearing through holes behind it. 
+								The machine is silent. The desk is covered in papers written in an alphabet you recognize, but the words make no sense. It needs a good tidy. 
+								</p>
+							</div>
+						</div>
+						<!-- Workshop View -->
+						<div id = "workshopView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "workshopContainer">
+							<div class = "viewContainerTitle"> 
+								<p class = "panelTitle">The Workshop</p>
+								<p class = "panelSubTitle">
+								It's dark and drab. The tube you climbed out of is in the corner. The floor is still wet from when it opened.
+								There's a small hole in one of the walls with a dripping sound coming from it.
+								</p>
+							</div>
+						</div>
+						<!-- Camp View -->
+						<div id = "campView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "campContainer">
+							<div class = "viewContainerTitle"> 
+								<p class = "panelTitle">The Camp</p>
+								<p class = "panelSubTitle">
+								It's dark and drab. The tube you climbed out of is in the corner. The floor is still wet from when it opened.
+								There's a small hole in one of the walls with a dripping sound coming from it.
+								</p>
+							</div>
+						</div>
+						<!---------- Main Panel Views end here --------->
+					</div>
+					
+				</div>
+			
+				<div id = "sideContainer">
+					<div id = "logBox">
+						<ul id = "logList">
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+
+	<footer>
+	</footer>
+
+</html>
