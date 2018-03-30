@@ -14,7 +14,7 @@ function runScript(e){
 			var shortInput = input;
 		}
 		document.getElementById('consoleInput').value = '>'
-		processInput(shortInput);
+		processInput(shortInput.trim());
     }
 }
 
@@ -23,7 +23,7 @@ function processInput(input){
 	var cDisp = document.getElementById("consoleDisplay");
 	cDisp.innerHTML = "";
 	if (input.substring(0,4) == "HELP") {
-		cDisp.innerHTML = "More information, type: <BR/><BR/> doorcommands<BR/><BR/>lifesupport <BR/><BR/> status";
+		cDisp.innerHTML = "More information, type: <BR/><BR/>'doorcommands'<BR/><BR/>'Lifesupport'<BR/><BR/> 'Information'";
 	} else if (input.substring(0,6) == "UNLOCK"){
 		if (/^[A-Z]{1}[-]{1}\d{3}[-]{1}.{2}$/g.test(input.substring(7,input.length))) {
 			updateLog("#The  clamps on the door slide open.");
@@ -32,7 +32,29 @@ function processInput(input){
 			var audio = document.getElementById("unlock");
 			audio.play();
 		} else {
-			updateLog("# Unknown door");
+			updateLog("> Unknown door");
+		}
+	} else if (input.substring(0,4) == "LOCK"){
+		if (/^[A-Z]{1}[-]{1}\d{3}[-]{1}.{2}$/g.test(input.substring(5,input.length))) {
+			updateLog("#The  clamps on the door slide shut.");
+			lockDoor(input.substring(5, 13)+"a");
+			lockDoor(input.substring(5, 13)+"b");
+			var audio = document.getElementById("unlock");
+			audio.play();
+		} else {
+			updateLog("> Unknown door");
+		}
+	} else if (input.substring(0,6) == "STATUS"){
+		if (/^[A-Z]{1}[-]{1}\d{3}[-]{1}.{2}$/g.test(input.substring(7,input.length))) {
+			var doorCode = document.getElementById(input.substring(7,input.length)+"a");
+			alert(doorCode.getAttribute("isLocked"));
+			if((doorCode).getAttribute("isLocked") == "true"){
+				updateLog("?Door is locked");
+			} else {
+				updateLog("?Door is unlocked");
+			}
+		} else {
+			updateLog("? Unknown command");
 		}
 	} else if (input.substring(0,4) == "PUMP"){
 		if (/^[A-Z]{1}[-]{1}\d{3}$/g.test(input.substring(5,input.length))) {
@@ -47,18 +69,21 @@ function processInput(input){
 			updateLog("? Unknown Sector");
 		}
 	} else if (input.substring(0,11) == "LIFESUPPORT"){
-		cDisp.innerHTML = "Pump in oxygen: Pump SectorCode (Pump A-123) <BR/><BR/> Vent out oxygen: Vent SectorCode (Vent A-123)";
-	} else if (input.substring(0,11) == "STATUS"){
+		cDisp.innerHTML = "Pump in oxygen: Pump SectorCode (Pump A-123) <BR/><BR/> Vent out oxygen: Vent SectorCode (Vent A-123)<BR/><BR/>Sector Status: Status Sectorcode (Status A-123)";
+	} else if (input.substring(0,11) == "INFORMATION"){
 		cDisp.innerHTML = "Oxygen level: Unknown.<BR/><BR/>Power level: Unknown<BR/><BR/>Surviving Residents: Unknown.";
+	} else if (input.substring(0,12) == "DOORCOMMANDS"){
+		cDisp.innerHTML = "Unlock door: Unlock doorcode (Unlock A-123-01)<BR/><BR/>Lock door: Lock doorcode (Lock A-123-01)<BR/><BR/>Door Status: Status doorcode (Status A-123-01)";
 	}
 	
 }
 
-function activateCosnole(consoleID){
-	var console = document.getElementById(consoleID);
+function activateConsole(consoleID){
 	var cTi = document.getElementById("consoleTitle");
+	var console = document.getElementById(consoleID);
 	var cDisp = document.getElementById("consoleDisplay");
 	var cInp = document.getElementById("consoleInput");
+	cDisp.innerHTML = 'Enter Commands or type help for more information.';
 	cInp.value = '>'
 	cTi.innerHTML = "Console " + consoleID.substring(0,consoleID.length-1) +".";
 	cTi.style.display = "block";

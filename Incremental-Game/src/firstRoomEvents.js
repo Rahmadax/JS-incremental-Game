@@ -108,7 +108,6 @@ function holeAction(){
 		checkDisplay();
 		updateResources("metal", 1);
 		document.getElementById("chiselBB").setAttribute("isVisible", "true");
-		updateLog("Found a broken bit of pipe in the crawlspace. Might be able to find a use for it");
 	} else if (tC > searchHole.length) {
 		var foundFood = (Math.round(Math.random(50) * 100) / 100);
 		updateResources("food",foundFood);

@@ -50,6 +50,7 @@ function changeView(roomName) {
 		
 		document.getElementById("consoleDisplay").style.display = "none";
 		document.getElementById("consoleInput").style.display = "none";
+		document.getElementById("consoleTitle").style.display = "none";
 		
 		newConts.style.backgroundColor = "black";
 		nextRoom.setAttribute("isVisible", 'true');
@@ -125,5 +126,51 @@ function checkDisplay(){
 	}
 }
 
+function createBuyButton(obj){
+	var Craftables = {
+		'Chisel': {
+			name: ('Chisel'),
+			availableMsg: ("Found a broken bit of pipe in the crawlspace. Might be able to find a use for it."),
+			buildMsg: ('Fashioned myself a little chisel. Might be able to get through the wall now.'),
+			buyBar: "roomBuyBar",
+			type: '',
+			cost: function() {
+				return {
+					'metal': 1,
+					'cloth': 1
+				};
+			}
+		},
+		
+		'Repair Console': {
+			name: ('Repair Console'),
+			availableMsg: ("This old console is beat up bad. I need some wires to fix it up."),
+			buildMsg: ('Engineer wired the thing back together. Time to try turning it on.'),
+			buyBar: "darkBuyBar",
+			type: '',
+			cost: function() {
+				return {
+					'electronics': 3
+				};
+			}
+		}
+}
+	
+	var ul = document.getElementById("darkBuyBar");
+	var newBB = document.createElement('li'); 
+	newDiv.classList.add('actionButton');
+	var refObj = Craftables[obj];
+	var newid = (refObj.name+'BB');
+	newDiv.setAttribute("id", "newid");
+	newDiv.setAttribute("isVisible", "true");
+	newDiv.setAttribute("onclick", "attemptBuy('chiselBB')");
+	ul.append(li);
+	updateLog("Done process");
+}
 
-
+/*
+<script>
+$('#alarmAB').click(testfunction());
+</script>
+function test(){  $( "#alarmAB" ).clone().appendTo( "#darkRoomAB" ); }
+*/

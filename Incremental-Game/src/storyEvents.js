@@ -21,6 +21,11 @@ function unlockDoor(doorID){
 	door.setAttribute("isLocked", 'false');
 }
 
+function lockDoor(doorID){
+	var door = document.getElementById(doorID);
+	door.setAttribute("isLocked", 'true');
+}
+
 /*---------- Action Specific -----------*/
 function startEvent(){
 	var startSpeech = [
