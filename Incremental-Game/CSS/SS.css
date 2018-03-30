@@ -209,11 +209,8 @@ body {
     cursor: pointer;
 	margin-right: 5px;
 	margin-top: 5px;
-	text-align: left;
 	position:relative;
-	position: relative;
-	bottom: 10px;
-	text-align: center;
+	bottom: 11px;
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -252,12 +249,13 @@ body {
     color: black;
     text-align: center;
 	border: solid black 1px;
-    padding: 5px 0;
+    padding: 7px 0;
 	font-size:10px;
-
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
+    margin-left:-82px;
+    margin-top: 30px;
 }
 
 .actionButton:hover .tooltiptext {

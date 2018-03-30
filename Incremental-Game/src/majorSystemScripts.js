@@ -1,6 +1,4 @@
 
-
-
 setInterval(mainLoop, 10); /* The game tick speed. */
 
 function mainLoop(){	/* Major game loop logic goes in here */
@@ -8,18 +6,18 @@ function mainLoop(){	/* Major game loop logic goes in here */
 }
 
 function updateLog(txt) {
-	var ul = document.getElementById("logList");
-	var li = document.createElement("li");
-	if (txt.charAt(0) == ">"){
+	let ul = document.getElementById("logList");
+	let li = document.createElement("li");
+	if (txt.charAt(0) === ">"){
 		li.setAttribute("class", "announcement");
 		txt = (txt.substring(1,txt.length));
-	} else if (txt.charAt(0) == "~") {
+	} else if (txt.charAt(0) === "~") {
 		li.setAttribute("class", "assistant");
 		txt = (txt.substring(1,txt.length));
-	} else if (txt.charAt(0) == "#") {
+	} else if (txt.charAt(0) === "#") {
 		li.setAttribute("class", "effect");
 		txt = (txt.substring(1,txt.length));
-	} else if (txt.charAt(0) == "?") {
+	} else if (txt.charAt(0) === "?") {
 		li.setAttribute("class", "speaker");
 		txt = (txt.substring(1,txt.length));
 	} else {
@@ -27,20 +25,20 @@ function updateLog(txt) {
 	}
 	li.appendChild(document.createTextNode(txt));
 	li.setAttribute("timeCreated", getCreationTime());
-	li.setAttribute("opacity", 1);
+	li.setAttribute("opacity", "1");
 	ul.insertBefore(li, ul.childNodes[0]);
 }
 
 
 function changeView(roomName) {
-	var nextRoom = document.getElementById(roomName);
-	if (nextRoom.getAttribute("lifeSupport") == "false"){
+	let nextRoom = document.getElementById(roomName);
+	if (nextRoom.getAttribute("lifeSupport") === "false"){
 		updateLog("There's no air out there. Maybe I can find a way to pump some in.");
 	} else {
-		var mvps = document.getElementsByClassName("mainPanelView");
-		var conts = document.getElementsByClassName("tabButtons");
-		var relConts = nextRoom.getAttribute("relatedCont");
-		var newConts = document.getElementById(relConts);
+		let mvps = document.getElementsByClassName("mainPanelView");
+		let conts = document.getElementsByClassName("tabButtons");
+		let relConts = nextRoom.getAttribute("relatedCont");
+		let newConts = document.getElementById(relConts);
 		for (i = 0; i < mvps.length; i++) {
 			mvps[i].setAttribute("isVisible", 'false');
 		}
