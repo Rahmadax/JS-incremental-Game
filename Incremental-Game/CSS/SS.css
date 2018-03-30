@@ -65,6 +65,16 @@ body {
 	background-color: #151515;
 }
 
+#consoleTitle {
+	padding: 0;
+	margin: 0;
+	font-family: Courier New;
+	color: #1ec503 ;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 10pt;
+}
+
 #consoleDisplay {
 	padding: 0;
 	margin: 0;
@@ -188,8 +198,8 @@ body {
 	height: 25%;
 }
 
-.actionBar li {
-    display: inline-block;
+.actionButton {
+	display: inline-block;
 	color: white;
 	float: left;
 	height: 30px;
@@ -200,15 +210,29 @@ body {
 	margin-right: 5px;
 	margin-top: 5px;
 	text-align: left;
+	position:relative;
 }
 
-.actionButton {
-	background-color: grey;
+.actionButtonOff, .actionButtonOff:hover {
+	display: inline-block;
+	color: white;
+	float: left;
+	height: 30px;
+	width: 120px;
+    border: solid white 1px;
+    white-space: nowrap;
+	margin-right: 5px;
+	margin-top: 5px;
+	text-align: left;
+	position:relative;
+	border-color: #b2b2b2;
+	color: #b2b2b2;
+	text-decoration: none;
 }
 
-.actionButton p {
+.actionButton p, .actionButtonOff p {
 	position: relative;
-	bottom: 8px;
+	bottom: 10px;
 	text-align: center;
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -232,6 +256,17 @@ body {
 
 .actionButton:hover .tooltiptext {
     visibility: visible;
+}
+
+.cooldown {
+	overflow:hidden;
+	width:50%;
+	z-index:-1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    background-color: #DDDDDD;
 }
 
 .viewContainerMain {
@@ -304,6 +339,24 @@ body {
 .assistant {
 	font-weight: bold;
 	color: #00EEEE;
+	margin-top: 15px;
+	margin-left: -20px;
+	margin-right: 10px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.effect {
+	font-weight: bold;
+	color: #a8a8a8;
+	margin-top: 15px;
+	margin-left: -20px;
+	margin-right: 10px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.speaker {
+	font-weight: bold;
+	color: #FFB90F;
 	margin-top: 15px;
 	margin-left: -20px;
 	margin-right: 10px;

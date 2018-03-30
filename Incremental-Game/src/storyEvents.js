@@ -9,10 +9,10 @@ function openDoor(doorID){
 	var door = document.getElementById(doorID);
 	var conRoom = door.getAttribute("conRoom");
 	if (door.getAttribute("isLocked") == 'true'){
-		updateLog("Door's heavy. Wont budge. " + "The code " + doorID + " is printed just above the door.");
+		updateLog("Door's heavy. Wont budge. " + "The code " + doorID.substring(0,doorID.length-1) + " is printed just above the door.");
 	} else {
-		checkDisplay();
 		changeView(conRoom);
+		checkDisplay();
 	}
 }
 
@@ -35,7 +35,7 @@ function startEvent(){
 	var timesRun = 0;
 	var audio = document.getElementById("alarm");
 	var interval = setInterval(function(){
-		audio.play();
+	audio.play();
 		if(timesRun === startSpeech.length-1){
 			clearInterval(interval);
 		}
@@ -49,13 +49,9 @@ function startOminous(){
 	audio.play();
 }
 
-function runScript(e){
-	if (e.keyCode == 13) {
-		var input = document.getElementById("consoleInput").value;
-		var shortInput = input.substring(2,length.input);
-		document.getElementById('consoleInput').value = '> '
-        updateLog(shortInput);
-    }
+function monsterSound(){
+	var audio = document.getElementById("monster");
+	audio.play();
 }
 
 

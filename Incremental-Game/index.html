@@ -1,23 +1,29 @@
 <html>
 	<header>
-		<link rel = "stylesheet" type="text/css" href="SS.css" media="screen" />
-		<script src="systemFunctions.js"></script>
-		<script src="storyEvents.js"></script>
-		<script src="resourceEvents.js"></script>
-		<script src="firstRoomEvents.js"></script>
+		<link rel = "stylesheet" type="text/css" href="CSS/SS.css" media="screen" />
+		<script src="src/majorSystemScripts.js"></script>
+		<script src="src/consoleScripts.js"></script>
+		<script src="src/storyEvents.js"></script>
+		<script src="src/resourceEvents.js"></script>
+		<script src="src/firstRoomEvents.js"></script>
 	</header>
 
 	<body>
-	<audio id = "alarm" class = "audio" src="Alarm.ogg" ></audio>
+	<audio id = "alarm" class = "audio" src="Audio/Alarm.ogg" ></audio>
+	<audio id = "unlock" class = "audio" src="Audio/unlock.ogg"></audio>
+	<audio id = "darkness" class = "audio" src="Audio/darkness.ogg"></audio>
+	<audio id = "powerOn" class = "audio" src="Audio/powerOn.ogg"></audio>
+	<audio id = "monster" class = "audio" src="Audio/monster.ogg"></audio>
 
 		<div id = "backContainer">
 			<div id = "mainContainer">
 			
 				<div id = "centerContainer"> 
 					<div id = "topConsole" style = display:block > 
-						<p id = "consoleDisplay"> - No data - </p>
+						<p id = "consoleTitle" style = display:none></p>
+						<p id = "consoleDisplay" style = display:none></p>
 						<p></p>
-						<input type = "text" onfocus="this.value='> '" id = "consoleInput" size = 23 maxlength = 40 overflow = hidden onkeypress="return runScript(event) "> </input>
+						<input type = "text" id = "consoleInput" size = 23 maxlength = 40 overflow = hidden onkeypress="return runScript(event)" style = display:none> </input>
 					</div>
 					
 					<div class = "topBox">
@@ -47,11 +53,11 @@
 								<p onclick = changeView("crawlSpaceView")>Crawl Space</p>
 							</li>
 							
-							<li id = "corridorContainer" class = "tabButtons" isVisible = "false" style = display:none >
+							<li id = "corridorContainer" class = "tabButtons" isVisible = "true" style = display:none >
 								<p onclick = changeView("corridorView")>Corridor</p>
 							</li>
 							
-							<li id = "consoleContainer" class = "tabButtons" isVisible = "false" style = display:none>
+							<li id = "consoleContainer" class = "tabButtons" isVisible = "true" style = display:none>
 								<p onclick = changeView("consoleView")>Console Room</p>
 							</li>
 							
@@ -80,7 +86,7 @@
 							<div class = "viewContainerMain">
 								<div class = "leftViewPanel">
 									<ul class = "actionBar">
-										<li id = "alarmAB" class = "actionButton" onclick = startEvent() style = display:block >
+										<li id = "alarmAB" class = "actionButton" onclick = monsterSound() style = display:block >
 											<p>Test Alarm</p>
 										</li>
 										
@@ -101,7 +107,7 @@
 							</div>
 						</div>
 						<!-- Room View -->
-						<div id = "roomView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "roomContainer"> 
+						<div id = "roomView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "roomContainer" lifeSupport = "true"> 
 							<div class = "viewContainerTitle"> 
 								<p class = "panelTitle">The Room</p>
 								<p class = "panelSubTitle">
@@ -113,16 +119,17 @@
 							<div class = "viewContainerMain">
 								<div class = "leftViewPanel">
 									<ul class = "actionBar">
-									<li class = "actionButton" id = "tubeAB" onclick = tubeAction() timesClicked = 0 isVisible = "true" style = display:block><p>Tube</p></li>
-										<li class = "actionButton" id = "H-120-04" onclick = firstDoorAction(this.id) timesClicked = 0 isLocked = "false" conRoom = "corridorView" isVisible = "false" style = display:none><p>Door</p></li>
-										<li class = "actionButton" id = "holeAB" onclick = updateLog(holeAction()) timesClicked = 0 isVisible = "false" style = display:none><p>Hole</p></li>
-										
+									<li class = "actionButton" id = "tubeAB" onclick = "tubeAction();buttonDisable(this.id);" timesClicked = 0 isVisible = "true" style = display:block>
+										<p>Tube</p>
+									</li>
+									<li class = "actionButton" id = "H-120-04b" onclick = "firstDoorAction(this.id);buttonDisable(this.id);" timesClicked = 0 isLocked = "true" conRoom = "corridorView" isVisible = "false" style = display:none><p>Door</p></li>
+									<li class = "actionButton" id = "holeAB" onclick = holeAction() timesClicked = 0 isVisible = "false" style = display:none><p>Hole</p></li>
 									</ul>
 								</div>
 								
 								<div class = "rightViewPanel">
 									<ul class = "actionBar">
-										<li class = "actionButton buyButton" id = "chiselBB" isVisible = "false" isActive = "true" onclick = attemptBuy("chiselBB", "chiselTT")>
+										<li class = "actionButton" id = "chiselBB" isVisible = "false" onclick = attemptBuy("chiselBB", "chiselTT")>
 											<p>Makeshift Chisel</p>
 											<span id = "chiselTT" class="tooltiptext">1 Metal 1 Cloth</span>
 										</li>
@@ -132,7 +139,7 @@
 							</div>
 						</div>
 						<!-- Crawl Space View -->
-						<div id = "crawlSpaceView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "crawlSpaceContainer">
+						<div id = "crawlSpaceView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "crawlSpaceContainer" lifeSupport = "true">
 							<div class = "viewContainerTitle"> 
 								<p class = "panelTitle">The Crawlspace</p>
 								<p class = "panelSubTitle">
@@ -142,7 +149,7 @@
 							</div>
 						</div>
 						<!-- Corridor View -->
-						<div id = "corridorView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "corridorContainer">
+						<div id = "corridorView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "corridorContainer" lifeSupport = "true">
 							<div class = "viewContainerTitle"> 
 								<p class = "panelTitle">The corridor</p>
 								<p class = "panelSubTitle">
@@ -153,12 +160,12 @@
 							<div class = "viewContainerMain">
 								<div class = "leftViewPanel">
 									<ul class = "actionBar">
-										<li class = "actionButton" id = "H-120-04" isLocked = 'false' onclick = openDoor("H-120-04") conRoom = "roomView"><p>Your Room</p></li>
-										<li class = "actionButton" id = "H-120-E" isLocked = 'true' onclick = openDoor("H-120-E") conRoom = "campView"><p>Far Door</p></li>
-										<li class = "actionButton" id = "H-120-03" isLocked = 'true' onclick = openDoor("H-120-03") conRoom = "null"><p>Right Room 1</p></li>
-										<li class = "actionButton" id = "H-120-02" isLocked = 'true' onclick = openDoor("H-120-02") conRoom = "null"><p>Left Room 1</p></li>
-										<li class = "actionButton" id = "H-120-01" isLocked = 'true' onclick = openDoor("H-120-01") conRoom = "null"><p>Right Room 2</p></li>
-										<li class = "actionButton" id = "H-120-C" isLocked = 'true' onclick = openDoor("H-120-C") conRoom = "consoleView"><p>Left Room 2</p></li>
+										<li class = "actionButton" id = "H-120-04a" isLocked = 'false' onclick = openDoor(this.id) conRoom = "roomView"><p>Your Room</p></li>
+										<li class = "actionButton" id = "H-120-EXa" isLocked = 'true' onclick = openDoor(this.id) conRoom = "campView"><p>Far Door</p></li>
+										<li class = "actionButton" id = "H-120-03a" isLocked = 'true' onclick = openDoor(this.id) conRoom = "null"><p>Right Room 1</p></li>
+										<li class = "actionButton" id = "H-120-02a" isLocked = 'true' onclick = openDoor(this.id) conRoom = "null"><p>Left Room 1</p></li>
+										<li class = "actionButton" id = "H-120-01a" isLocked = 'true' onclick = openDoor(this.id) conRoom = "null"><p>Right Room 2</p></li>
+										<li class = "actionButton" id = "H-120-COa" isLocked = 'true' onclick = openDoor(this.id) conRoom = "consoleView"><p>Left Room 2</p></li>
 									</ul>
 								</div>
 								
@@ -167,8 +174,8 @@
 								</div>
 							</div>
 						</div>
-						<!-- Camp View -->
-						<div id = "consoleView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "consoleContainer">
+						<!-- Console View -->
+						<div id = "consoleView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "consoleContainer" lifeSupport = "true">
 							<div class = "viewContainerTitle"> 
 								<p class = "panelTitle">The Mainframe</p>
 								<p class = "panelSubTitle">
@@ -177,9 +184,30 @@
 								The machine is silent. The desk is covered in papers written in an alphabet you recognize, but the words make no sense. It needs a good tidy. 
 								</p>
 							</div>
+							
+							<div class = "viewContainerMain">
+								<div class = "leftViewPanel">
+									<ul class = "actionBar">
+										<li class = "actionButton" id = "C-H120Search" onclick = C-H120Seach() isVisible = "true"><p>Search</p></li>
+										<li class = "actionButton" id = "C-H120a" onclick = activateCosnole(this.id) isVisible = "false"><p>Activate</p></li>
+										<li class = "actionButton" id = "C-H120d" onclick = deactivateConsole(this.id) isVisible = "false"><p>Deactivate</p></li>
+										<li class = "actionButton" id = "H-120-COb" isLocked = 'true' onclick = openDoor(this.id) conRoom = "corridorView"><p>Corridor</p></li>
+									</ul>
+								</div>
+									<ul class = "actionBar">
+										<li class = "actionButton buyButton" id = "repairConsole" isVisible = "true" isActive = "true" onclick = repairConsole("C-H120",this.id)>
+											<p>Repair Console</p>
+											<span id = "repairConsoleTT" class="tooltiptext">3 electronics</span>
+										</li>
+										
+									</ul>
+								<div class = "rightViewPanel">
+									
+								</div>
+							</div>
 						</div>
 						<!-- Workshop View -->
-						<div id = "workshopView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "workshopContainer">
+						<div id = "workshopView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "workshopContainer" lifeSupport = "true">
 							<div class = "viewContainerTitle"> 
 								<p class = "panelTitle">The Workshop</p>
 								<p class = "panelSubTitle">
@@ -189,7 +217,7 @@
 							</div>
 						</div>
 						<!-- Camp View -->
-						<div id = "campView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "campContainer">
+						<div id = "campView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "campContainer" lifeSupport = "true">
 							<div class = "viewContainerTitle"> 
 								<p class = "panelTitle">The Camp</p>
 								<p class = "panelSubTitle">
