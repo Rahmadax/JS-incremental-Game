@@ -18,7 +18,7 @@ body {
 
 
 /* ---------- Background containers ---------- */
-#backContainer {
+#backPanel {
 	background-color: #929FAD;
 }
 
@@ -140,7 +140,7 @@ body {
 	list-style-type: none;
 }
 
-.tabs {
+#tabs {
 	width: 100%;
 	height: 30px;
 }
@@ -149,7 +149,7 @@ body {
 	cursor: pointer;
 }
 
-.tabs li {
+#tabs li {
 	float: left;
 	display: inline-block;
     width: 16%;
@@ -159,14 +159,14 @@ body {
 	border: solid white 1px;
 }
 
-.tabs p {
+#tabs p {
 	color: white;
 	position: relative;
 	bottom: 8px;
 	font-size: 1em;
 }
 
-.tabs p:hover {
+#tabs p:hover {
 	text-decoration: underline;
 }
 

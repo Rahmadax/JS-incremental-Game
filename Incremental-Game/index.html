@@ -9,6 +9,8 @@
 		<script src="src/resourceEvents.js"></script>
 		<script src="src/firstRoomEvents.js"></script>
 		<script src="src/tableData.js"></script>
+        <script src="src/autoGen.js"></script>
+        <script src="src/smallUtilScripts.js"></script>
 	</head>
 
 	<body>
@@ -18,9 +20,8 @@
 	<audio id = "powerOn" class = "audio" src="Audio/powerOn.ogg"></audio>
 	<audio id = "monster" class = "audio" src="Audio/monster.ogg"></audio>
 
-		<div id = "backContainer">
+		<div id = "backPanel">
 			<div id = "mainContainer">
-			
 				<div id = "centerContainer">
 					<div id = "topConsole" style = display:block > 
 						<p id = "consoleTitle" style = display:block>hello</p>
@@ -33,14 +34,10 @@
                         <ul id = resourceBar>
                         </ul>
 					</div>
-					
-					<div class = "topBox">
-					
-					</div>
 
 					<div id = "mainPanelContainer">
 						<!---------- Tabs go here ---------->
-						<ul class = "tabs"> 
+						<ul id = "tabs">
 							<li id = "darkContainer" class = "tabButtons" isVisible = "false"  style = display:block >
 								<p onclick = changeView("darkView") isVisible = "true">Darkness</p>
 							</li>
@@ -65,7 +62,7 @@
 								<p onclick = changeView("workshopView")>Workshop</p>
 							</li>
 							
-							<li id = "campContainer" class = "tabButtons" isVisible = "false" style = display:none>
+							<li id = "campContainer" class = "tabButtons" isVisible = "false" style = displa y:none>
 								<p onclick = changeView("campView")>Outside</p>
 							</li>
 							
@@ -78,7 +75,7 @@
 						<!---------- Tabs end here ---------->
 						
 						<!---------- Main Panel Views go here ---------->
-						<div id ="roomViews">
+                        <div id ="roomViews">
 							<!-- Dark Room View -->
 							<div id = "darkView" class = "mainPanelView" isVisible = "true" style = display:block relatedCont = "darkContainer">
 							
@@ -92,7 +89,7 @@
 							<div class = "viewContainerMain">
 								<div class = "leftViewPanel">
 									<ul class = "actionBar">
-										<li id = "alarmAB" class = "actionButton" onclick = createBuyButton('Chisel'); style = display:block >
+										<li id = "alarmAB" class = "actionButton" onclick = genTab('roomView'); style = display:block >
 											<p>Test Button</p>
 										</li>
 
@@ -206,32 +203,18 @@
                                         </ul>
 									</div>
 							    </div>
-							<!-- Workshop View -->
-							<div id = "workshopView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "workshopContainer" lifeSupport = 100>
-								<div class = "viewContainerTitle"> 
-									<p class = "panelTitle">The Workshop</p>
-									<p class = "panelSubTitle">
-									It's dark and drab. The tube you climbed out of is in the corner. The floor is still wet from when it opened.
-									There's a small hole in one of the walls with a dripping sound coming from it.
-									</p>
-								</div>
-							</div>
-						
 						</div>
-						<!---------- Main Panel Views end here --------->
-					</div>
-						
-				</div>
-            </div>
-
-            <div id = "sideContainer">
-                <div id = "logBox">
-                    <ul id = "logList">
-                    </ul>
+					    </div>
+                        <!---------- Main Panel Views end here --------->
+				    </div>
                 </div>
-            </div>
-				
 
+                <div id = "sideContainer">
+                    <div id = "logBox">
+                        <ul id = "logList">
+                        </ul>
+                    </div>
+                 </div>
 		    </div>
             <div id = "foot">
                 <p>hello</p>
