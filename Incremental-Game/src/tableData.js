@@ -69,7 +69,7 @@ let consoles = {
     }
 };
 
-let rooms = {
+let roomStore = {
     'Console' : {
         title : 'Console: ',
         subtitle: 'A large console against one of the walls.'
@@ -78,41 +78,62 @@ let rooms = {
 
 let sectors = {
     'H' : {
-        Rooms : {
-            'CD' : {
-                position: 'corridor',
+        room: {
+            'H-00': {
+                type: 'corridor',
+                title: 'Corridor Test Title',
+                subtitle: 'Corridor Test Subtitle',
+                doors: ['H-01', 'H-02', 'H-03', 'H-04', 'H-05', 'H-06'],
+                actionButtons: ['Tube', 'Hole'],
+                buyButtons: ['Chisel']
+            },
+            'H-01': {
+                type: 'console',
                 title: 'Console Test Title',
-                subtitle: 'Console Test SubTitle',
+                subtitle: 'Corridor Test Subtitle',
+                doors: ['H-00'],
+                actionButtons: ['Search', 'Activate', 'Deactivate'],
+                buyButtons: ['Repair_Console']
             },
-            'CO' : {
-                position: 'l1',
-                title: '',
-                subtitle: '',
+            'H-02': {
+                type: 'standard',
+                title: 'Room 2',
+                subtitle: 'Room 2',
+                doors: ['H-00'],
+                actionButtons: [],
+                buyButtons: []
             },
-            '01' : {
-                position: 'r1',
-                title: '',
-                subtitle: '',
+            'H-03': {
+                type: 'standard',
+                title: 'Room 3',
+                subtitle: 'Room 3',
+                doors: ['H-00'],
+                actionButtons: [],
+                buyButtons: []
             },
-            '02' : {
-                position: 'l2',
-                title: '',
-                subtitle: '',
+            'H-04': {
+                type: 'standard',
+                title: 'Room 4',
+                subtitle: 'Room 4',
+                doors: ['H-00'],
+                actionButtons: [],
+                buyButtons: []
             },
-            '03' : {
-                position: 'r2',
-                title: '',
-                subtitle: '',
+            'H-05': {
+                type: 'standard',
+                title: 'Room 5',
+                subtitle: 'Room 5',
+                doors: ['H-00'],
+                actionButtons: [],
+                buyButtons: []
             },
-            '04' : {
-                position: 'l3',
-                title: '',
-                subtitle: '',
-            },
-            'Your Room' : {
-                position: 'r3',
-                title: '',
-                subtitle: '',
+            'H-06': {
+                type: 'special',
+                title: 'Your Room',
+                subtitle: 'Your Room',
+                doors: ['H-00'],
+                actionButtons: [],
+                buyButtons: []
             }
         }
     }
