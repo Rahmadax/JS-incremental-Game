@@ -107,7 +107,7 @@ function checkDisplay(){
 	
 	actionButs = document.getElementsByClassName("actionButton");
 	for (i = 0; i < actionButs.length; i++) {
-		if (actionButs[i].getAttribute("isVisible") == 'false'){
+		if (actionButs[i].getAttribute("isVisible") === 'false'){
 			actionButs[i].style.display = "none";
 		} else {
 			actionButs[i].style.display = "block";
@@ -116,7 +116,7 @@ function checkDisplay(){
 	
 	rCs = document.getElementsByClassName("resourceCounter");
 	for (i = 0; i < rCs.length; i++) {
-		if (rCs[i].getAttribute("isVisible") == 'false'){
+		if (rCs[i].getAttribute("isVisible") === 'false'){
 			rCs[i].style.display = "none";
 		} else {
 			rCs[i].style.display = "block";
