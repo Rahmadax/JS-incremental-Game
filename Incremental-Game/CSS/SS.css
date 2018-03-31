@@ -2,8 +2,8 @@
 /* ---------- HTML file info  ---------- */
 html {
   height: 100%;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -11,9 +11,9 @@ body {
   font-size: 11pt;
   height: 100%;
   line-height: 1.3em;
-  margin: 0px;
-  padding: 0px;
-  border-width: 0px;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
 }
 
 
@@ -28,7 +28,7 @@ body {
 	background-color: #929FAD;
 	max-width: 1000px;
 	margin: auto;
-	overflow:hidden
+	overflow:auto
 	
 }
 
@@ -66,23 +66,19 @@ body {
 }
 
 #consoleTitle {
-	padding: 0;
-	margin: 0;
-	font-family: Courier New;
+    margin: 0;
+    font-family: Courier New, monospace;
 	color: #1ec503 ;
-	padding-left: 5px;
-	padding-right: 5px;
-	font-size: 9pt;
+    padding: 0 5px;
+    font-size: 9pt;
 }
 
 #consoleDisplay {
-	padding: 0;
-	margin: 0;
-	font-family: Courier New;
+    margin: 0;
+    font-family: Courier New, monospace;
 	color: #1ec503 ;
-	padding-left: 5px;
-	padding-right: 5px;
-	font-size: 9pt;
+    padding: 0 5px;
+    font-size: 9pt;
 }
 
 #consoleInput {
@@ -218,18 +214,16 @@ body {
 
 .actionButtonOff, .actionButtonOff:hover {
 	display: inline-block;
-	color: white;
 	float: left;
 	height: 30px;
 	width: 120px;
-    border: solid white 1px;
     white-space: nowrap;
 	margin-right: 5px;
 	margin-top: 5px;
 	text-align: left;
 	position:relative;
-	border-color: #b2b2b2;
-	color: #b2b2b2;
+    border: 1px solid #b2b2b2;
+    color: #b2b2b2;
 	text-decoration: none;
 }
 
@@ -267,8 +261,8 @@ body {
 	width:50%;
 	z-index:-1;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     height: 100%;
     background-color: #DDDDDD;
 }
@@ -307,9 +301,8 @@ body {
 	height: 960px;
 	width: 24%;
 	background-color: #929FAD;
-	margin: auto;
-	overflow:auto;
-	margin-left: 10px;
+    overflow:auto;
+    margin: auto auto auto 10px;
 }
 
 #logBox {

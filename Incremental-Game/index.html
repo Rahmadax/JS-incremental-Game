@@ -8,7 +8,7 @@
 		<script src="src/storyEvents.js"></script>
 		<script src="src/resourceEvents.js"></script>
 		<script src="src/firstRoomEvents.js"></script>
-		<script src="src/ItemStore.js"></script>
+		<script src="src/tableData.js"></script>
 	</head>
 
 	<body>
@@ -21,7 +21,7 @@
 		<div id = "backContainer">
 			<div id = "mainContainer">
 			
-				<div id = "centerContainer"> 
+				<div id = "centerContainer">
 					<div id = "topConsole" style = display:block > 
 						<p id = "consoleTitle" style = display:block>hello</p>
 						<p id = "consoleDisplay" style = display:block></p>
@@ -33,8 +33,8 @@
 						<p id = "food" class = "resourceCounter" isVisible = "false" style = display:block>Food: 0</p>
 						<p id = "water" class = "resourceCounter" isVisible = "false" style = display:block>Water: 0</p>
 						<p id = "wood" class = "resourceCounter" isVisible = "false" style = display:none>Wood: 0</p>
-						<p id = "metal" class = "resourceCounter" isVisible = "true" style = display:none>Metal: 1</p>
-						<p id = "cloth" class = "resourceCounter" isVisible = "true" style = display:none>Cloth: 1</p>
+						<p id = "metal" class = "resourceCounter" isVisible = "true" style = display:none>Metal: 10</p>
+						<p id = "cloth" class = "resourceCounter" isVisible = "true" style = display:none>Cloth: 10</p>
 					</div>
 					
 					<div class = "topBox">
@@ -95,7 +95,7 @@
 							<div class = "viewContainerMain">
 								<div class = "leftViewPanel">
 									<ul class = "actionBar">
-										<li id = "alarmAB" class = "actionButton" onclick = "createBuyButton('Chisel'); createBuyButton('Repair Console');" style = display:block >
+										<li id = "alarmAB" class = "actionButton" onclick = updateResources('metal',10); style = display:block >
 											<p>Test Button</p>
 										</li>
 										<li id = "feelAB" class = "actionButton" onclick = updateLog(getStoryPrompt("feelAB")) timesClicked = 0 style = display:block >
@@ -116,7 +116,7 @@
 							</div>
 						</div>
 							<!-- Room View -->
-							<div id = "roomView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "roomContainer" lifeSupport = 100> 
+							<div id = "roomView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "roomContainer"; lifeSupport = 100>
 								<div class = "viewContainerTitle"> 
 									<p class = "panelTitle">The Room</p>
 									<p class = "panelSubTitle">
@@ -231,16 +231,18 @@
 					</div>
 						
 				</div>
-			
-				<div id = "sideContainer">
-					<div id = "logBox">
-						<ul id = "logList">
-						</ul>
-					</div>
-				</div>
+            </div>
+
+            <div id = "sideContainer">
+                <div id = "logBox">
+                    <ul id = "logList">
+                    </ul>
+                </div>
+            </div>
 				
-			</div>
-		</div>
+
+		    </div>
+        </div>
 	</body>
 
 	<footer>
