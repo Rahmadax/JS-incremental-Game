@@ -1,3 +1,4 @@
+remainingSectors = ['A','B','C','D','E','F','G','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
 let resources = {
     // collectible resources
@@ -69,5 +70,50 @@ let consoles = {
 };
 
 let rooms = {
-    
-}
+    'Console' : {
+        title : 'Console: ',
+        subtitle: 'A large console against one of the walls.'
+    }
+};
+
+let sectors = {
+    'H' : {
+        Rooms : {
+            'CD' : {
+                position: 'corridor',
+                title: 'Console Test Title',
+                subtitle: 'Console Test SubTitle',
+            },
+            'CO' : {
+                position: 'l1',
+                title: '',
+                subtitle: '',
+            },
+            '01' : {
+                position: 'r1',
+                title: '',
+                subtitle: '',
+            },
+            '02' : {
+                position: 'l2',
+                title: '',
+                subtitle: '',
+            },
+            '03' : {
+                position: 'r2',
+                title: '',
+                subtitle: '',
+            },
+            '04' : {
+                position: 'l3',
+                title: '',
+                subtitle: '',
+            },
+            'Your Room' : {
+                position: 'r3',
+                title: '',
+                subtitle: '',
+            }
+        }
+    }
+};

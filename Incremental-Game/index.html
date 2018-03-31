@@ -38,16 +38,12 @@
 					<div id = "mainPanelContainer">
 						<!---------- Tabs go here ---------->
 						<ul id = "tabs">
-							<li id = "darkContainer" class = "tabButtons" isVisible = "false"  style = display:block >
-								<p onclick = changeView("darkView") isVisible = "true">Darkness</p>
+							<li id = "testContainer" class = "tabButtons" isVisible = "true"  style = display:block >
+								<p onclick = changeView("testView") isVisible = "true">Test Page</p>
 							</li>
 							
 							<li id = "roomContainer" class = "tabButtons" isVisible = "true" style = display:block>
 								<p onclick = changeView("roomView")>Your Room</p>
-							</li>
-							
-							<li id = "crawlSpaceContainer" class = "tabButtons" isVisible = "false" style = display:none>
-								<p onclick = changeView("crawlSpaceView")>Crawl Space</p>
 							</li>
 							
 							<li id = "corridorContainer" class = "tabButtons" isVisible = "true" style = display:none >
@@ -57,19 +53,6 @@
 							<li id = "consoleContainer" class = "tabButtons" isVisible = "true" style = display:none>
 								<p onclick = changeView("C-H120")>Console Room</p>
 							</li>
-							
-							<li id = "workshopContainer" class = "tabButtons" isVisible = "false" style = display:none>
-								<p onclick = changeView("workshopView")>Workshop</p>
-							</li>
-							
-							<li id = "campContainer" class = "tabButtons" isVisible = "false" style = displa y:none>
-								<p onclick = changeView("campView")>Outside</p>
-							</li>
-							
-							<li id = "standardContainer" class = "tabButtons" isVisible = "true" style = display:none>
-								<p onclick = changeView("standardView")>standard</p>
-							</li>
-							
 						</ul>
 						<div id = "divider"> </div>
 						<!---------- Tabs end here ---------->
@@ -77,7 +60,7 @@
 						<!---------- Main Panel Views go here ---------->
                         <div id ="roomViews">
 							<!-- Dark Room View -->
-							<div id = "darkView" class = "mainPanelView" isVisible = "true" style = display:block relatedCont = "darkContainer">
+							<div id = "testView" class = "mainPanelView" isVisible = "true" style = display:block relatedCont = "darkContainer">
 							
 							<div class = "viewContainerTitle">
 								<p class = "panelTitle">A dark room</p>
@@ -89,8 +72,8 @@
 							<div class = "viewContainerMain">
 								<div class = "leftViewPanel">
 									<ul class = "actionBar">
-										<li id = "alarmAB" class = "actionButton" onclick = genTab('roomView'); style = display:block >
-											<p>Test Button</p>
+										<li id = "alarmAB" class = "actionButton" onclick = genSector(); style = display:block >
+											<p>Test Room</p>
 										</li>
 
                                         <li id = "testAB" class = "actionButton" onclick = updateResources('metal',10); style = display:block >
@@ -141,16 +124,7 @@
 									</div>
 								</div>
 							</div>
-							<!-- Crawl Space View -->
-							<div id = "crawlSpaceView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "crawlSpaceContainer" lifeSupport = 100>
-								<div class = "viewContainerTitle"> 
-									<p class = "panelTitle">The Crawlspace</p>
-									<p class = "panelSubTitle">
-									The narrow crawl space isn't tall enough to let you stand up, you have to crawl to move along it. 
-									The place is damp and covered in the green moss you've been eating. There's no clear source of the water. 
-									</p>
-								</div>
-							</div>
+
 							<!-- Corridor View -->
 							<div id = "corridorView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "corridorContainer" lifeSupport = 100>
 								<div class = "viewContainerTitle"> 
