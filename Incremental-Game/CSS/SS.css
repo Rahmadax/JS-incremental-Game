@@ -200,6 +200,11 @@ body {
 	height: 25%;
 }
 
+.actionBar{
+    width:100%;
+    height:100%;
+}
+
 .actionButton {
 	display: inline-block;
 	color: white;
@@ -210,7 +215,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
 	margin-right: 5px;
-	margin-top: 0px;
+	margin-top: 5px;
 	position:relative;
 	bottom: 11px;
 	-webkit-touch-callout: none;
@@ -218,18 +223,22 @@ body {
     -moz-user-select: none;
 }
 
-.actionButtonOff, .actionButtonOff:hover {
-	display: inline-block;
-	float: left;
-	height: 30px;
-	width: 120px;
-    white-space: nowrap;
-	margin-right: 5px;
-	margin-top: 5px;
-	text-align: left;
-	position:relative;
-    border: 1px solid #b2b2b2;
+.actionButtonOff {
+    display: inline-block;
     color: #b2b2b2;
+    float: left;
+    height: 30px;
+    width: 120px;
+    white-space: nowrap;
+    text-align: left;
+    border: 1px solid #b2b2b2;
+    margin-right: 5px;
+    margin-top: 5px;
+    position:relative;
+    bottom: 11px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
 	text-decoration: none;
 }
 

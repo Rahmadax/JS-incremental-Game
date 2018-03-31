@@ -36,22 +36,27 @@ function runScript(e){
 
 // Turns the console display on.
 function activateConsole(consoleID){
-	let cTi = document.getElementById("consoleTitle");
-	let cDisp = document.getElementById("consoleDisplay");
-	let cInp = document.getElementById("consoleInput");
-	cDisp.innerHTML = 'Enter Commands or type help for more information.';
-	cInp.value = '>';
-	cTi.innerHTML = "Console " + consoleID.substring(0,consoleID.length-1) +".";
-	cTi.style.display = "block";
-	cInp.style.display = "block";
-	cDisp.style.display = "block";
-	let audio = document.getElementById("powerOn");
-	audio.play();
+    if (consoles[consoleID.substring(0,consoleID.length-1)].repaired === true) {
+        updateLog("The console buzzes to life.");
+        let cTi = document.getElementById("consoleTitle");
+        let cDisp = document.getElementById("consoleDisplay");
+        let cInp = document.getElementById("consoleInput");
+        cDisp.innerHTML = 'Enter Commands or type help for more information.';
+        cInp.value = '>';
+        cTi.innerHTML = "Console " + consoleID.substring(0, consoleID.length - 1) + ".";
+        cTi.style.display = "block";
+        cInp.style.display = "block";
+        cDisp.style.display = "block";
+        let audio = document.getElementById("powerOn");
+        audio.play();
+    } else {
+        updateLog("The console is dead.");
+    }
 }
 
 // Turns the console off.
 function deactivateConsole(){
-	cTi = document.getElementById("consoleTitle")
+	cTi = document.getElementById("consoleTitle");
 	cTi.style.display = "none";
 	cTi.innerHTML = "";
 	document.getElementById("consoleInput").style.display = "none";
@@ -59,13 +64,10 @@ function deactivateConsole(){
 }
 
 // Repairs the console
-function repairConsole(consoleID, buttonID){
+function repairConsole(buttonID){
+
 	buttonDisablePerm(buttonID);
-	if (consoleID === "C-H120"){
-		document.getElementById("C-H120Search").setAttribute("isVisible", "false");
-		document.getElementById("C-H120a").setAttribute("isVisible", "true");
-		document.getElementById("C-H120d").setAttribute("isVisible", "true");
-	}
+
 }
 
 // Parses and computes the input into the console input line.

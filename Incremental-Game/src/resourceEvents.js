@@ -1,3 +1,4 @@
+// Updating the resource data table. Takes the table key and the value to add.
 function updateResources(resourceType, addition){
     let res = document.getElementById(resourceType);
 	let currRes = resources[resourceType];
@@ -7,6 +8,7 @@ function updateResources(resourceType, addition){
 	updateResourceView();
 }
 
+// Updates the resource view displays.
 function updateResourceView(){
     let resourceKeys = Object.keys(resources);
     for (let i = 0; i < resources.length; i++){
@@ -19,56 +21,66 @@ function updateResourceView(){
     }
 }
 
-function createBuyButton(obj){
-    let objRef = items[obj];
-    if (objRef.available === 'true'){
-        let ul = document.getElementById(objRef.buyBar);
-        let newBuy = document.createElement('li');
-        let newBuytext = document.createElement('p');
-        let newBuyTT = document.createElement('span');
-        let keys = Object.keys(objRef.cost);
-        let costs = Object.values(objRef.cost);
+// Creates new buy buttons and updates the item table. Takes the Item table key.
+function createBuyButton(item){
+    let itemRef = items[item];
+    if (itemRef.available === 'true'){
+        let ul = document.getElementById(itemRef.buyBar);
+        let newBuy = document.createElement('li');     // Create a new list item
+        let newBuytext = document.createElement('p');  // P tag inside the list item
+        let newBuyTT = document.createElement('span'); // Create the new Tool tip
+        let keys = Object.keys(itemRef.cost);
+        let costs = Object.values(itemRef.cost);
 
         newBuyTT.setAttribute('class', 'tooltiptext');
-        newBuyTT.setAttribute('id', (objRef.name + 'TT'));
+        newBuyTT.setAttribute('id', (itemRef.name + 'TT'));
         newBuyTT.innerHTML = '';
-        for (let i = 0; i < costs.length; i++){
+        for (let i = 0; i < costs.length; i++)
             newBuyTT.innerHTML += (costs[i] + ' ' + keys[i] +"  ");
-        }
-        newBuytext.innerHTML = objRef.name;
+
+        newBuytext.innerHTML = itemRef.name.replace("_", " ");
         newBuy.setAttribute('class', 'actionButton');
-        newBuy.setAttribute('id', (objRef.name + 'BB'));
-        newBuy.setAttribute('onClick', 'attemptBuy("'+ objRef.name +'")');
+        newBuy.setAttribute('id', (itemRef.name + 'BB'));
+        if (itemRef.extraFunction != null){
+            newBuy.setAttribute('onClick', "attemptBuy("+ "'" +itemRef.name + "'); " + itemRef.extraFunction);
+        } else {
+            newBuy.setAttribute('onClick', 'attemptBuy("'+ itemRef.name +'")');
+        }
+
 
         ul.appendChild(newBuy);
         newBuy.append(newBuytext);
         newBuytext.append(newBuyTT);
 
-        objRef.available = 'false';
+        itemRef.available = 'false';                   // Stops object being created twice.
+        updateLog(itemRef.availableMsg);
     }
 }
 
-
-function attemptBuy(obj){
-    let objRef = Items[obj];
-    let keys = Object.keys(objRef.cost);
-    let costs = Object.values(objRef.cost);
-    let succ;
+// Attempts to buy an item. Takes an Item table key.
+function attemptBuy(item){
+    let itemRef = items[item];
+    let keys = Object.keys(itemRef.cost);
+    let costs = Object.values(itemRef.cost);
+    let success;
     for (let i = 0; i < costs.length; i++) {
         if (costs[i] <= resources[keys[i]]) {
-            succ = true;
+            success = true;
         } else {
-            succ = false;
-            break;
+            success = false;
+            updateLog("Don't have the resources.");
+            break; // If any resources is lacking, break from loop.
         }
     }
-    for (let j = 0; j < costs.length; j++){
-        resources[keys[j]] -= costs[j];
-    }
+    if (success === true) {
+        for (let j = 0; j < costs.length; j++)
+            resources[keys[j]] -= costs[j];
 
-    document.getElementById(objRef.name+"BB").removeAttribute('class');
-    document.getElementById(objRef.name+"BB").setAttribute('class', 'actionButtonOff');
-    document.getElementById(objRef.name+"BB").removeAttribute('onClick');
-    document.getElementById(objRef.name+"TT").style.display = 'none';
-    objRef.available = false;
+        updateLog(itemRef.buildMsg);
+        document.getElementById(itemRef.name + "BB").removeAttribute('class');
+        document.getElementById(itemRef.name + "BB").setAttribute('class', 'actionButtonOff');
+        document.getElementById(itemRef.name + "BB").removeAttribute('onClick');
+        document.getElementById(itemRef.name + "TT").style.display = 'none';
+        itemRef.available = false;
+    }
 }

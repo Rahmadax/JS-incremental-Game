@@ -58,7 +58,7 @@
 							</li>
 							
 							<li id = "consoleContainer" class = "tabButtons" isVisible = "true" style = display:none>
-								<p onclick = changeView("consoleView")>Console Room</p>
+								<p onclick = changeView("C-H120")>Console Room</p>
 							</li>
 							
 							<li id = "workshopContainer" class = "tabButtons" isVisible = "false" style = display:none>
@@ -181,7 +181,7 @@
 								</div>
 							</div>
 							<!-- Console View -->
-							<div id = "consoleView" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "consoleContainer" lifeSupport = 100>
+							<div id = "C-H120" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "consoleContainer" lifeSupport = 100; repaired = false>
 								<div class = "viewContainerTitle"> 
 									<p class = "panelTitle">The Mainframe</p>
 									<p class = "panelSubTitle">
@@ -194,9 +194,9 @@
 								<div class = "viewContainerMain">
 									<div class = "leftViewPanel">
 										<ul class = "actionBar">
-											<li class = "actionButton" id = "C-H120Search" onclick = C-H120Seach() isVisible = "true"><p>Search</p></li>
-											<li class = "actionButton" id = "C-H120a" onclick = activateConsole(this.id) isVisible = "false"><p>Activate</p></li>
-											<li class = "actionButton" id = "C-H120d" onclick = deactivateConsole(this.id) isVisible = "false"><p>Deactivate</p></li>
+											<li class = "actionButton" id = "C-H120Search" onclick = createBuyButton('Repair_Console') isVisible = "true"><p>Search</p></li>
+											<li class = "actionButton" id = "C-H120a" onclick = activateConsole("C-H120a") isVisible = "true"><p>Activate</p></li>
+											<li class = "actionButton" id = "C-H120d" onclick = deactivateConsole(this.id) isVisible = "true"><p>Deactivate</p></li>
 											<li class = "actionButton" id = "H-120-COb" isLocked = 'true' onclick = openDoor(this.id) conRoom = "corridorView"><p>Corridor</p></li>
 										</ul>
 									</div>
