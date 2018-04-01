@@ -5,13 +5,12 @@ function genSector(){
         let newSector = remainingSectors[Math.floor(Math.random() * remainingSectors.length)];
         remainingSectors.splice(remainingSectors.indexOf(newSector), 1);
         sectors[newSector] = {};
-        let areaCode = Math.floor((Math.random()*5)+1);
+        let areaCode = Math.floor(Math.random()*5);
         let secObj = sectors[newSector]['room'] = {};
         let numberOfRooms = Math.floor(Math.random()*6+4);
-        for (let i = 0; i < numberOfRooms; i++){
-            let areaId = (newSector + '-' + areaCode);
+        let areaId = (newSector + '-' + areaCode);
+        for (let i = 0; i < numberOfRooms; i++)
             secObj[newSector + "-" + areaCode + "-" + i] = newRoom(areaId,i,numberOfRooms);
-        }
         showRooms(newSector);
     }
 }
@@ -23,9 +22,8 @@ function newRoom(areaCode, roomCode, numberOfRooms) {
     newRoom['name'] = areaCode + '-' + roomCode;
     if (roomCode === 0) {
         newRoom['type'] = 'corridor';
-        for (let i = 1; i < numberOfRooms; i++) {
+        for (let i = 1; i < numberOfRooms; i++)
             doors.push(areaCode + '-' + i);
-        }
         newRoom['doors'] = doors;
     } else if (roomCode === 1) {
         newRoom['type'] = 'console';
@@ -36,7 +34,6 @@ function newRoom(areaCode, roomCode, numberOfRooms) {
     }
     newRoom['title'] = 'Test';
     newRoom['subtitle'] = 'Test';
-
     return newRoom;
 }
 
@@ -54,24 +51,30 @@ function showRooms(sectorName) {
 // Makes new doors visible.
 function showDoors(roomObj,keys,k, ab) {
     let newRoomObj = roomObj[keys[k]];
-    let ds = newRoomObj.doors;
     let n = newRoomObj.name;
-    let t = newRoomObj.type;
     ab.setAttribute('class', 'actionBar');
-    for (let i = ds.length; i > 0; i--) {
-        let roomCheck = roomObj[keys[i]];
+    for (let i = newRoomObj.doors.length; i > 0; i--) {
         let d = document.createElement('li');
-        if (t === 'corridor') {
-            let newn = n.substring(0,n.length-1)+(i);
-            d.setAttribute('id', newn + 'a');
-            d.setAttribute('conRoom', n.substring(0,n.length-1)+i);
+        if (newRoomObj.type === 'corridor') {
+            let newn = n.substring(0, n.length - 1) + (i);
+            $(d).attr({
+            'id':       newn + 'C',
+            'class':    'actionButton door',
+            'onclick':  'openDoor(this.id)',
+            'type':     newRoomObj.type,
+            'conRoom':  n.substring(0, n.length - 1) + i,
+            'locked':   'true'
+        });
         } else {
-            d.setAttribute('id', n.substring(0,n.length) + 'b');
-            d.setAttribute('conRoom', roomObj[keys[0]].name);
+            $(d).attr({
+            'id':       (n.substring(0, n.length) + 'R'),
+            'class':    'actionButton door',
+            'onclick':  'openDoor(this.id)',
+            'type':     newRoomObj.type,
+            'conRoom':  roomObj[keys[0]].name,
+            'locked':   'true'
+            });
         }
-        d.setAttribute('class', 'actionButton door');
-        d.setAttribute('onclick', 'openDoor(this.id)');
-        d.setAttribute('type', newRoomObj.type);
         let tag = document.createElement('p');
         tag.innerHTML = newRoomObj.type;
         ab.append(d);
@@ -84,8 +87,8 @@ function showDoors(roomObj,keys,k, ab) {
 // Sets the locked status of newly generated doors.
 function setDoorStatus(sectorObj, keys){
     for (let i = 1; i < keys.length; i++){
-        let namea = document.getElementById(sectorObj[keys[i]].name +'a');
-        let nameb = document.getElementById(sectorObj[keys[i]].name +'b');
+        let namea = document.getElementById(sectorObj[keys[i]].name +'C');
+        let nameb = document.getElementById(sectorObj[keys[i]].name +'R');
         namea.setAttribute('isLocked',sectorObj[keys[i]].locked);
         nameb.setAttribute('isLocked',sectorObj[keys[i]].locked);
     }
@@ -116,12 +119,9 @@ function genBuyButton(item){
         } else {
             newBuy.setAttribute('onClick', 'attemptBuy("'+ itemRef.name +'")');
         }
-
-
         ul.appendChild(newBuy);
         newBuy.append(newBuytext);
         newBuytext.append(newBuyTT);
-
         itemRef.available = 'false';                   // Stops object being created twice.
         updateLog(itemRef.availableMsg);
     }
