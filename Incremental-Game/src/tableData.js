@@ -34,9 +34,9 @@ let tools = {
 let items = {
 		'Chisel': {
 			name: 'Chisel',
-			availableMsg: ("Found a broken bit of pipe in the crawlspace. Might be able to find a use for it."),
+			availableMsg: ('Found a broken bit of pipe in the crawlspace. Might be able to find a use for it.'),
 			buildMsg: ('Built a chisel. Might be able to get through the wall now.'),
-			buyBar: "darkBuyBar",
+			buyBar: 'darkBuyBar',
             available: 'true',
             numBuilt : 0,
             maxNum : 1,
@@ -80,7 +80,8 @@ let sectors = {
     'H' : {
         room: {
             'H-00': {
-                type: 'corridor',
+                name: 'H-00',
+                type: 'Corridor',
                 title: 'Corridor Test Title',
                 subtitle: 'Corridor Test Subtitle',
                 doors: ['H-01', 'H-02', 'H-03', 'H-04', 'H-05', 'H-06'],
@@ -88,7 +89,8 @@ let sectors = {
                 buyButtons: ['Chisel']
             },
             'H-01': {
-                type: 'console',
+                name: 'H-01',
+                type: 'Console',
                 title: 'Console Test Title',
                 subtitle: 'Corridor Test Subtitle',
                 doors: ['H-00'],
@@ -96,7 +98,8 @@ let sectors = {
                 buyButtons: ['Repair_Console']
             },
             'H-02': {
-                type: 'standard',
+                name: 'H-02',
+                type: 'Side Room',
                 title: 'Room 2',
                 subtitle: 'Room 2',
                 doors: ['H-00'],
@@ -104,7 +107,8 @@ let sectors = {
                 buyButtons: []
             },
             'H-03': {
-                type: 'standard',
+                name: 'H-03',
+                type: 'Side Room',
                 title: 'Room 3',
                 subtitle: 'Room 3',
                 doors: ['H-00'],
@@ -112,7 +116,8 @@ let sectors = {
                 buyButtons: []
             },
             'H-04': {
-                type: 'standard',
+                name: 'H-04',
+                type: 'Side Room',
                 title: 'Room 4',
                 subtitle: 'Room 4',
                 doors: ['H-00'],
@@ -120,7 +125,8 @@ let sectors = {
                 buyButtons: []
             },
             'H-05': {
-                type: 'standard',
+                name: 'H-05',
+                type: 'Side Room',
                 title: 'Room 5',
                 subtitle: 'Room 5',
                 doors: ['H-00'],
@@ -128,7 +134,8 @@ let sectors = {
                 buyButtons: []
             },
             'H-06': {
-                type: 'special',
+                name: 'H-06',
+                type: 'Special',
                 title: 'Your Room',
                 subtitle: 'Your Room',
                 doors: ['H-00'],

@@ -38,14 +38,14 @@ function genTab(viewName){
     let name = viewName.substring(0,viewName.indexOf('View'));
     let ul = document.getElementById('tabs');
     let newTab = document.createElement('li');
-    newTab.setAttribute("id", name+"Container");
-    newTab.setAttribute("class", "tabButtons");
+    newTab.setAttribute('id', name+'Container');
+    newTab.setAttribute('class', 'tabButtons');
     let newTabText = document.createElement('p');
-    newTabText.setAttribute("onclick", 'changeView("'+viewName+'")');
+    newTabText.setAttribute('onclick', 'changeView("'+viewName+'")');
     newTabText.innerHTML = capFirst(name);
     ul.appendChild(newTab);
     newTab.append(newTabText);
-    return name + "Container";
+    return name + 'Container';
 }
 
 function genSector(){
@@ -58,12 +58,12 @@ function genSector(){
         let numberOfRooms = Math.floor(Math.random()*10+4);
         for (let i = 0; i < numberOfRooms; i++){
             let areaId = (newSector + '-' + areaCode);
-            secObj[newSector + "-" + areaCode + "-" + i] = newRoom(areaId,i,numberOfRooms);
+            secObj[newSector + "-" + areaCode + "-" + i] = newRooms(areaId,i,numberOfRooms);
         }
     }
 }
 
-function newRoom(areaCode, roomCode, numberOfRooms) {
+function newRooms(areaCode, roomCode, numberOfRooms) {
     let newRoom = {};
     let doors = [];
     newRoom['id'] = areaCode + '-' + roomCode;
@@ -85,42 +85,66 @@ function newRoom(areaCode, roomCode, numberOfRooms) {
 
 function genRoom(sectorName) {
     let sectorObj = sectors[sectorName].room;
-    let keys = Object.keys(sectorObj);
+    let keys = Object.keys(sectorObj); // A list of rooms.
+    let ab = document.createElement('ul');
     for (let i = 0; i < keys.length; i++) {
-        showRoom(sectorObj[keys[0]]);
+        showRoom(sectorObj,keys,i, ab);  // Rooms to be shown.
     }
 }
 
-function showRoom(roomObj){
-
+function showRoom(roomObj,keys,k, ab) {
+    let newRoomObj = roomObj[keys[k]];
+    let ds = newRoomObj.doors;
+    let n = newRoomObj.name;
+    let t = newRoomObj.type;
+    ab.setAttribute('class', 'actionBar');
+    for (let i = 0; i < ds.length; i++) {
+        let roomCheck = roomObj[keys[i]];
+        let d = document.createElement('li');
+        if (t === 'Corridor') {
+            updateLog(roomCheck.name+'a');
+            d.setAttribute('id', n.substring(0,n.length-1)+(i+1) + 'a');
+            d.setAttribute('conRoom', n.substring(0,n.length-1)+(i+1));
+        } else {
+            updateLog(roomCheck.name+'b');
+            d.setAttribute('id', n.substring(0,n.length) + 'b');
+            d.setAttribute('conRoom', roomObj[keys[0]].name);
+        }
+        d.setAttribute('class', 'actionButton door');
+        d.setAttribute('isLocked', 'true');
+        d.setAttribute('onclick', 'openDoor(this.id)');
+        d.setAttribute('type', newRoomObj.type);
+        let tag = document.createElement('p');
+        tag.innerHTML = roomCheck.type;
+        ab.append(d);
+        d.append(tag);
+    }
+    let buyBar = document.getElementById('darkBuyBar');
+    buyBar.append(ab);
 }
 
-    /*
-    let cont = document.getElementById('roomViews');
-    let mpv = document.createElement('div');
-    let vct = document.createElement('div');
+    /*let vct = document.createElement('div');
     let panelTitle = document.createElement('p');
     let panelSubTitle = document.createElement('p');
     let vcm = document.createElement('div');
     let lvp = document.createElement('div');
     let rvp = document.createElement('div');
 
-    let roomCode = sectorName + "-" + roomcode +"View";
-    mpv.setAttribute("id", roomCode);
-    mpv.setAttribute("class", "mainPanelView");
-    mpv.setAttribute("relatedCont", genTab(roomCode));
-    cont.append(mpv); */
-
+    let roomCode = sectorName + '-' + roomcode +'View';
+    mpv.setAttribute('id', roomCode);
+    mpv.setAttribute('class', 'mainPanelView');
+    mpv.setAttribute('relatedCont', genTab(roomCode));
+    cont.append(mpv);*/
 
 function chooseRoom(){
     switch (Math.floor(Math.random()*4)) {
         case 0:
-            return ("Console");
+            return ('Console');
         case 1:
-            return ("Room");
+            return ('Room');
         case 2:
-            return ("Storage");
+            return ('Storage');
         case 3:
-            return ("Maintenance");
+            return ('Maintenance');
     }
 }
