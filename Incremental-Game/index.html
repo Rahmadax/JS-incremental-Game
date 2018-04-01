@@ -46,10 +46,6 @@
 								<p onclick = changeView("roomView")>Your Room</p>
 							</li>
 							
-							<li id = "corridorContainer" class = "tabButtons" isVisible = "true" style = display:none >
-								<p onclick = changeView("corridorView")>Corridor</p>
-							</li>
-							
 							<li id = "consoleContainer" class = "tabButtons" isVisible = "true" style = display:none>
 								<p onclick = changeView("C-H120")>Console Room</p>
 							</li>
@@ -59,7 +55,7 @@
 						
 						<!---------- Main Panel Views go here ---------->
                         <div id ="roomViews">
-							<!-- Dark Room View -->
+							<!-- Test Room View -->
 							<div id = "testView" class = "mainPanelView" isVisible = "true" style = display:block relatedCont = "darkContainer">
 							
 							<div class = "viewContainerTitle">
@@ -72,7 +68,7 @@
 							<div class = "viewContainerMain">
 								<div class = "leftViewPanel">
 									<ul class = "actionBar">
-										<li id = "alarmAB" class = "actionButton" onclick = genRoom('H'); style = display:block >
+										<li id = "alarmAB" class = "actionButton" onclick = genSector(); style = display:block >
 											<p>Test Room Gen</p>
 										</li>
 
@@ -121,33 +117,6 @@
 									<div class = "rightViewPanel">
 										<ul class = "actionBar" id = "roomBuyBar">
 										</ul>
-									</div>
-								</div>
-							</div>
-
-							<!-- Corridor View -->
-							<div id = "corridorView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "corridorContainer" lifeSupport = 100>
-								<div class = "viewContainerTitle"> 
-									<p class = "panelTitle">The corridor</p>
-									<p class = "panelSubTitle">
-									A stone corridor. There's 6 doors leading off from it.  
-									</p>
-								</div>
-								
-								<div class = "viewContainerMain">
-									<div class = "leftViewPanel">
-										<ul class = "actionBar">
-											<li class = "actionButton" id = "H-120-04a" isLocked = 'false' onclick = openDoor(this.id) conRoom = "roomView"><p>Your Room</p></li>
-											<li class = "actionButton" id = "H-120-EXa" isLocked = 'true' onclick = openDoor(this.id) conRoom = "campView"><p>Far Door</p></li>
-											<li class = "actionButton" id = "H-120-03a" isLocked = 'true' onclick = openDoor(this.id) conRoom = "null"><p>Right Room 1</p></li>
-											<li class = "actionButton" id = "H-120-02a" isLocked = 'true' onclick = openDoor(this.id) conRoom = "null"><p>Left Room 1</p></li>
-											<li class = "actionButton" id = "H-120-01a" isLocked = 'true' onclick = openDoor(this.id) conRoom = "null"><p>Right Room 2</p></li>
-											<li class = "actionButton" id = "H-120-COa" isLocked = 'true' onclick = openDoor(this.id) conRoom = "consoleView"><p>Left Room 2</p></li>
-										</ul>
-									</div>
-									
-									<div class = "rightViewPanel">
-									
 									</div>
 								</div>
 							</div>

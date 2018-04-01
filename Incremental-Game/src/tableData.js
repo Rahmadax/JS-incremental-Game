@@ -77,7 +77,7 @@ let roomStore = {
 };
 
 let sectors = {
-    'H' : {
+    'H': {
         room: {
             'H-00': {
                 name: 'H-00',
@@ -85,6 +85,7 @@ let sectors = {
                 title: 'Corridor Test Title',
                 subtitle: 'Corridor Test Subtitle',
                 doors: ['H-01', 'H-02', 'H-03', 'H-04', 'H-05', 'H-06'],
+                locked: 'true',
                 actionButtons: ['Tube', 'Hole'],
                 buyButtons: ['Chisel']
             },
@@ -94,6 +95,7 @@ let sectors = {
                 title: 'Console Test Title',
                 subtitle: 'Corridor Test Subtitle',
                 doors: ['H-00'],
+                locked: 'false',
                 actionButtons: ['Search', 'Activate', 'Deactivate'],
                 buyButtons: ['Repair_Console']
             },
@@ -103,6 +105,7 @@ let sectors = {
                 title: 'Room 2',
                 subtitle: 'Room 2',
                 doors: ['H-00'],
+                locked: 'true',
                 actionButtons: [],
                 buyButtons: []
             },
@@ -112,6 +115,7 @@ let sectors = {
                 title: 'Room 3',
                 subtitle: 'Room 3',
                 doors: ['H-00'],
+                locked: 'true',
                 actionButtons: [],
                 buyButtons: []
             },
@@ -121,6 +125,7 @@ let sectors = {
                 title: 'Room 4',
                 subtitle: 'Room 4',
                 doors: ['H-00'],
+                locked: 'true',
                 actionButtons: [],
                 buyButtons: []
             },
@@ -130,6 +135,7 @@ let sectors = {
                 title: 'Room 5',
                 subtitle: 'Room 5',
                 doors: ['H-00'],
+                locked: 'true',
                 actionButtons: [],
                 buyButtons: []
             },
@@ -139,6 +145,7 @@ let sectors = {
                 title: 'Your Room',
                 subtitle: 'Your Room',
                 doors: ['H-00'],
+                locked: 'true',
                 actionButtons: [],
                 buyButtons: []
             }
