@@ -29,25 +29,24 @@ function updateLog(txt) {
 	ul.insertBefore(li, ul.childNodes[0]);
 }
 
+function openDoor(doorID) {
+    let door = document.getElementById(doorID);
+    let conRoom = doorID
+    if (door.getAttribute("isLocked") === 'true') {
+        updateLog("Door's heavy. Wont budge. " + "The code " + doorID.substring(0, doorID.length - 1) + " is printed just above the door.");
+    } else {
+        changeView(conRoom);
+        checkDisplay();
+    }
+}
 
-function changeView(roomName) {
-	let nextRoom = document.getElementById(roomName);
+function changeView(conRoom) {
+    alert(conRoom);
+	let nextRoom = document.getElementById(conRoom);
 	let mvps = document.getElementsByClassName("mainPanelView");
-	let conts = document.getElementsByClassName("tabButtons");
-	let relConts = nextRoom.getAttribute("relatedCont");
-	let newConts = document.getElementById(relConts);
-	for (i = 0; i < mvps.length; i++) {
+	for (let i = 0; i < mvps.length; i++) {
 		mvps[i].setAttribute("isVisible", 'false');
 	}
-	for (j = 0; j < conts.length; j++) {
-		conts[j].style.backgroundColor = "grey";
-	}
-
-	document.getElementById("consoleDisplay").style.display = "none";
-	document.getElementById("consoleInput").style.display = "none";
-	document.getElementById("consoleTitle").style.display = "none";
-
-	newConts.style.backgroundColor = "black";
 	nextRoom.setAttribute("isVisible", 'true');
 	checkDisplay();
 }
@@ -85,7 +84,7 @@ function buttonDisablePerm(buttonId){
 function checkDisplay(){
 	mvps = document.getElementsByClassName("mainPanelView");
 	for (i = 0; i < mvps.length; i++) {
-		if (mvps[i].getAttribute("isVisible") == 'false'){
+		if (mvps[i].getAttribute("isVisible") === 'false'){
 			mvps[i].style.display = "none";
 		} else {
 			mvps[i].style.display = "block";
@@ -94,7 +93,7 @@ function checkDisplay(){
 	
 	tabConts = document.getElementsByClassName("tabButtons");
 	for (i = 0; i < tabConts.length; i++) {
-		if (tabConts[i].getAttribute("isVisible") == 'false'){
+		if (tabConts[i].getAttribute("isVisible") === 'false'){
 			tabConts[i].style.display = "none";
 		} else {
 			tabConts[i].style.display = "block";

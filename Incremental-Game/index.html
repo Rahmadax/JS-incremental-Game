@@ -1,7 +1,6 @@
 <html>
 	<head>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 		<link rel = "stylesheet" type="text/css" href="CSS/SS.css" media="screen" />
 		<script src="src/majorSystemScripts.js"></script>
 		<script src="src/consoleScripts.js"></script>
@@ -14,15 +13,17 @@
 	</head>
 
 	<body>
+    <audio>
 	<audio id = "alarm" class = "audio" src="Audio/Alarm.ogg" ></audio>
 	<audio id = "unlock" class = "audio" src="Audio/unlock.ogg"></audio>
 	<audio id = "darkness" class = "audio" src="Audio/darkness.ogg"></audio>
 	<audio id = "powerOn" class = "audio" src="Audio/powerOn.ogg"></audio>
 	<audio id = "monster" class = "audio" src="Audio/monster.ogg"></audio>
+    </audio>
 
-		<div id = "backPanel">
-			<div id = "mainContainer">
-				<div id = "centerContainer">
+		<div id = "wrapper">
+			<div id = "content">
+				<div id = "gameContainer">
 					<div id = "topConsole" style = display:block > 
 						<p id = "consoleTitle" style = display:block>hello</p>
 						<p id = "consoleDisplay" style = display:block></p>
@@ -52,12 +53,11 @@
 						</ul>
 						<div id = "divider"> </div>
 						<!---------- Tabs end here ---------->
-						
+
 						<!---------- Main Panel Views go here ---------->
                         <div id ="roomViews">
 							<!-- Test Room View -->
-							<div id = "testView" class = "mainPanelView" isVisible = "true" style = display:block relatedCont = "darkContainer">
-							
+							<div id = "testView" class = "mainPanelView" isVisible = "true" style = display:block; relatedCont = "testContainer">
 							<div class = "viewContainerTitle">
 								<p class = "panelTitle">A dark room</p>
 								<p class = "panelSubTitle">
@@ -88,7 +88,10 @@
 								</div>
 								
 								<div class = "rightViewPanel">
-									<ul class = "actionBar" id = "darkBuyBar">
+									<ul class = "actionBar" id = "testBuyBar">
+										<li class = "actionButton" onclick = openDoor(this.id); isLocked = false  style = display:none>
+											<p>Flashlight</p>
+										</li>
 									</ul>
 								</div>
 							</div>
@@ -97,20 +100,12 @@
 							<div id = "roomView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "roomContainer"; lifeSupport = 100>
 								<div class = "viewContainerTitle"> 
 									<p class = "panelTitle">The Room</p>
-									<p class = "panelSubTitle">
-									It's dark and drab. The tube you climbed out of is embedded in the opposite wall. The floor is still wet from when it opened.
-									There's a small hole in one of the walls with a dripping sound coming from it.
-									</p>
+									<p class = "panelSubTitle"></p>
 								</div>
 
 								<div class = "viewContainerMain">
 									<div class = "leftViewPanel">
-										<ul class = "actionBar">
-										<li class = "actionButton" id = "tubeAB" onclick = "tubeAction();buttonDisable(this.id);" timesClicked = 0 isVisible = "true" style = display:block>
-											<p>Tube</p>
-										</li>
-										<li class = "actionButton" id = "H-120-04b" onclick = "firstDoorAction(this.id);buttonDisable(this.id);" timesClicked = 0 isLocked = "true" conRoom = "corridorView" isVisible = "false" style = display:none><p>Door</p></li>
-										<li class = "actionButton" id = "holeAB" onclick = holeAction() timesClicked = 0 isVisible = "false" style = display:none><p>Hole</p></li>
+										<ul class = "actionBar" id = "roomActionBar">
 										</ul>
 									</div>
 									
@@ -120,45 +115,19 @@
 									</div>
 								</div>
 							</div>
-							<!-- Console View -->
-							<div id = "C-H120" class = "mainPanelView" isVisible = "false" style = display:none relatedCont = "consoleContainer" lifeSupport = 100; repaired = false>
-								<div class = "viewContainerTitle"> 
-									<p class = "panelTitle">The Mainframe</p>
-									<p class = "panelSubTitle">
-									A small room, lit by a single red overhead bulb. Two long strip lights run the length of the roof but give no light. 
-									A desk with 3 large monitors sits against one of the walls with wires disappearing through holes behind it. 
-									The machine is silent. The desk is covered in papers written in an alphabet you recognize, but the words make no sense. It needs a good tidy. 
-									</p>
-								</div>
-								
-								<div class = "viewContainerMain">
-									<div class = "leftViewPanel">
-										<ul class = "actionBar">
-											<li class = "actionButton" id = "C-H120Search" onclick = createBuyButton('Repair_Console') isVisible = "true"><p>Search</p></li>
-											<li class = "actionButton" id = "C-H120a" onclick = activateConsole("C-H120a") isVisible = "true"><p>Activate</p></li>
-											<li class = "actionButton" id = "C-H120d" onclick = deactivateConsole(this.id) isVisible = "true"><p>Deactivate</p></li>
-											<li class = "actionButton" id = "H-120-COb" isLocked = 'true' onclick = openDoor(this.id) conRoom = "corridorView"><p>Corridor</p></li>
-										</ul>
-									</div>
 
-									<div class = "rightViewPanel">
-                                        <ul class = "actionBar" id = "consoleBuyBar">
-                                        </ul>
-									</div>
-							    </div>
 						</div>
-					    </div>
-                        <!---------- Main Panel Views end here --------->
-				    </div>
-                </div>
-
-                <div id = "sideContainer">
-                    <div id = "logBox">
-                        <ul id = "logList">
-                        </ul>
                     </div>
-                 </div>
-		    </div>
+                        <!---------- Main Panel Views end here --------->
+                </div>
+            </div>
+
+            <div id = "logContainer">
+                <div id = "logBox">
+                    <ul id = "logList">
+                        </ul>
+                </div>
+            </div>
             <div id = "foot">
                 <p>hello</p>
             </div>

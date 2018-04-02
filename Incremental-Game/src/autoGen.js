@@ -12,6 +12,7 @@ function genSector(){
         for (let i = 0; i < numberOfRooms; i++)
             secObj[newSector + "-" + areaCode + "-" + i] = newRoom(areaId,i,numberOfRooms);
         showRooms(newSector);
+        genTab( newSector + '-' + areaCode + 'View', (areaId+ '-' + '0'));
     }
 }
 
@@ -32,6 +33,7 @@ function newRoom(areaCode, roomCode, numberOfRooms) {
         newRoom['type'] = 'standard';
         newRoom['doors'] = [areaCode+'-'+0];
     }
+    newRoom['locked'] = 'true';
     newRoom['title'] = 'Test';
     newRoom['subtitle'] = 'Test';
     return newRoom;
@@ -39,58 +41,105 @@ function newRoom(areaCode, roomCode, numberOfRooms) {
 
 // shows new rooms / doors.
 function showRooms(sectorName) {
-    let sectorObj = sectors[sectorName].room;
-    let keys = Object.keys(sectorObj); // A list of rooms.
-    let ab = document.createElement('ul');
+    let sectorObj = sectors[sectorName].room;   // a list of rooms.
+    let keys = Object.keys(sectorObj);          // A list of rooms names.
+    generateViews(sectorObj, keys);
     for (let i = 0; i < keys.length; i++) {
-        showDoors(sectorObj,keys,i, ab);  // Generates the doors.
+        showDoors(sectorObj,keys,i);        // Generates the doors.
     }
     setDoorStatus(sectorObj, keys);
 }
 
-// Makes new doors visible.
-function showDoors(roomObj,keys,k, ab) {
-    let newRoomObj = roomObj[keys[k]];
-    let n = newRoomObj.name;
-    ab.setAttribute('class', 'actionBar');
-    for (let i = newRoomObj.doors.length; i > 0; i--) {
-        let d = document.createElement('li');
-        if (newRoomObj.type === 'corridor') {
-            let newn = n.substring(0, n.length - 1) + (i);
-            $(d).attr({
-            'id':       newn + 'C',
-            'class':    'actionButton door',
-            'onclick':  'openDoor(this.id)',
-            'type':     newRoomObj.type,
-            'conRoom':  n.substring(0, n.length - 1) + i,
-            'locked':   'true'
+// Generates the view screens for main view panel.
+// sectorObj has a list of rooms, keys has a list of room names
+function generateViews(sectorObj, keys){
+    let views = document.getElementById('roomViews');   // The master view container
+    for (let i = 0; i < keys.length; i++){
+        let thisRoom = sectorObj[keys[i]];              // Getting the keys for the i-th room of a sector.
+        let view = document.createElement('div');       // Full view container
+        let vct = document.createElement('div');        // View title container
+        let title = document.createElement('p');        // View Title P tag
+        let subTitle = document.createElement('p');     // View Subtitle P tag
+        let vcm = document.createElement('div');        // View container main
+        let lvp = document.createElement('div');        // Left view panel
+        let rvp = document.createElement('div');        // Right view panel
+        let lab = document.createElement('ul');         // Left action bar
+        let rab = document.createElement('ul');         // Right action bar
+
+        $(view).attr({
+            'id': (thisRoom.name),
+            'class': 'mainPanelView',
+            'lifeSupport': 100
         });
-        } else {
-            $(d).attr({
-            'id':       (n.substring(0, n.length) + 'R'),
-            'class':    'actionButton door',
-            'onclick':  'openDoor(this.id)',
-            'type':     newRoomObj.type,
-            'conRoom':  roomObj[keys[0]].name,
-            'locked':   'true'
+        if (i === 0){
+            view.setAttribute('relatedCont', thisRoom.name.substring(0,3)+'Container');
+        }
+
+        $(vct).attr({'class': 'viewContainerTitle'});
+        $(title).attr({'id': 'title' + thisRoom.name, 'class': 'panelTitle'});
+        title.innerHTML = thisRoom.name;
+        $(subTitle).attr({'id': 'subTitle' + thisRoom.name, 'class': 'panelSubTitle'});
+
+        $(vcm).attr({'class': 'panelTitle'});
+        $(lvp).attr({'id': 'lvp' + thisRoom.name, 'class': 'leftViewPanel'});
+        $(rvp).attr({'id': 'rvp' + thisRoom.name,'class': 'rightViewPanel'});
+
+        $(lab).attr({'id': 'lab' + thisRoom.name, 'class': 'actionBar'});
+        $(rab).attr({'id': 'rab' + thisRoom.name,'class': 'actionBar'});
+
+        views.append(view);
+        view.append(vct);
+        vct.append(title);
+        vct.append(subTitle);
+        view.append(vcm);
+        vcm.append(lvp);
+        lvp.append(lab);
+        vcm.append(rvp);
+        rvp.append(rab);
+    }
+}
+
+
+
+// Makes new doors visible.
+function showDoors(sectorObj,keys,k) {
+    let thisRoom = sectorObj[keys[k]];
+    let buyBar = document.getElementById('lab' + thisRoom.name);
+    let n = thisRoom.name;
+    for (let i = thisRoom.doors.length; i > 0; i--) {
+        let door = document.createElement('li');
+        if (thisRoom.type === 'corridor') {
+            let newn = n.substring(0, n.length - 1) + (i);
+            $(door).attr({
+            'id': newn + 'C',
+            'class': 'actionButton',
+            'type': thisRoom.type,
+            'relatedCont':(sectorObj[keys[0]].name.substring(0,3)),
+             'onclick':    'openDoor("'+newn+'")'
             });
+        } else {
+            $(door).attr({
+            'id':       (n.substring(0, n.length) + 'R'),
+            'class':    'actionButton',
+            'type':     thisRoom.type,
+            'onclick':  'openDoor("'+n.substring(0, n.length-1)+'0")'
+            });
+            door.setAttribute('conRoom',sectorObj[keys[0]].name);
         }
         let tag = document.createElement('p');
-        tag.innerHTML = newRoomObj.type;
-        ab.append(d);
-        d.append(tag);
+        tag.innerHTML = thisRoom.type;
+        door.append(tag);
+        buyBar.append(door);
     }
-    let buyBar = document.getElementById('darkBuyBar'); // Change after testing.
-    buyBar.append(ab);
 }
 
 // Sets the locked status of newly generated doors.
 function setDoorStatus(sectorObj, keys){
     for (let i = 1; i < keys.length; i++){
-        let namea = document.getElementById(sectorObj[keys[i]].name +'C');
-        let nameb = document.getElementById(sectorObj[keys[i]].name +'R');
-        namea.setAttribute('isLocked',sectorObj[keys[i]].locked);
-        nameb.setAttribute('isLocked',sectorObj[keys[i]].locked);
+        let nameC = document.getElementById(sectorObj[keys[i]].name +'C');
+        let nameR = document.getElementById(sectorObj[keys[i]].name +'R');
+        nameC.setAttribute('isLocked',sectorObj[keys[i]].locked);
+        nameR.setAttribute('isLocked',sectorObj[keys[i]].locked);
     }
 }
 
@@ -100,7 +149,7 @@ function genBuyButton(item){
     if (itemRef.available === 'true'){
         let ul = document.getElementById(itemRef.buyBar);
         let newBuy = document.createElement('li');     // Create a new list item
-        let newBuytext = document.createElement('p');  // P tag inside the list item
+        let newBuyText = document.createElement('p');  // P tag inside the list item
         let newBuyTT = document.createElement('span'); // Create the new Tool tip
         let keys = Object.keys(itemRef.cost);
         let costs = Object.values(itemRef.cost);
@@ -111,7 +160,7 @@ function genBuyButton(item){
         for (let i = 0; i < costs.length; i++)
             newBuyTT.innerHTML += (costs[i] + ' ' + keys[i] +"  ");
 
-        newBuytext.innerHTML = itemRef.name.replace("_", " ");
+        newBuyText.innerHTML = itemRef.name.replace("_", " ");
         newBuy.setAttribute('class', 'actionButton');
         newBuy.setAttribute('id', (itemRef.name + 'BB'));
         if (itemRef.extraFunction != null){
@@ -128,16 +177,16 @@ function genBuyButton(item){
 }
 
 // Generates a new tab button.
-function genTab(viewName){
+function genTab(viewName, viewLink){
     let name = viewName.substring(0,viewName.indexOf('View'));
     let ul = document.getElementById('tabs');
     let newTab = document.createElement('li');
-    newTab.setAttribute('id', name+'Container');
+    newTab.setAttribute('id', name);
     newTab.setAttribute('class', 'tabButtons');
     let newTabText = document.createElement('p');
-    newTabText.setAttribute('onclick', 'changeView("'+viewName+'")');
+    newTabText.setAttribute('onclick', 'changeView("'+viewLink+'")');
     newTabText.innerHTML = capFirst(name);
+    newTab.style.backgroundColor = 'grey';
     ul.appendChild(newTab);
     newTab.append(newTabText);
-    return name + 'Container';
 }

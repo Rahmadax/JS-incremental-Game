@@ -5,17 +5,6 @@ function incrementButton(bName){
 	buttonUsed.setAttribute("timesClicked", parseInt(tC)+1);
 }
 
-function openDoor(doorID){
-	var door = document.getElementById(doorID);
-	var conRoom = door.getAttribute("conRoom");
-	if (door.getAttribute("isLocked") == 'true'){
-		updateLog("Door's heavy. Wont budge. " + "The code " + doorID.substring(0,doorID.length-1) + " is printed just above the door.");
-	} else {
-		changeView(conRoom);
-		checkDisplay();
-	}
-}
-
 function unlockDoor(doorID){
 	var door = document.getElementById(doorID);
 	door.setAttribute("isLocked", 'false');

@@ -18,11 +18,11 @@ body {
 
 
 /* ---------- Background containers ---------- */
-#backPanel {
+#wrapper {
 	background-color: #929FAD;
 }
 
-#mainContainer {
+#content {
 	height: 95%;
 	width: 97%;
 	background-color: #929FAD;
@@ -33,7 +33,7 @@ body {
 }
 
 /* ---------- Center container Stuff ---------- */
-#centerContainer {
+#gameContainer {
 	float:left;
 	height: 98%;
 	width: 74%;
@@ -243,6 +243,8 @@ body {
 }
 
 .actionButton p, .actionButtonOff p {
+    font-size: 15px;
+    font-weight: normal;
 	position: relative;
 	bottom: 10px;
 	text-align: center;
@@ -310,7 +312,7 @@ body {
 
 
 /* ---------- Side container Stuff ---------- */
-#sideContainer {
+#logContainer {
 	float:left;
 	display:inline-block;
 	height: 960px;

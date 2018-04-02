@@ -1,4 +1,5 @@
-remainingSectors = ['A','B','C','D','E','F','G','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+remainingSectors = ['B','C','D','E','F','G','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W'];
+reservedSectors = ['A','H','X','Y','Z'];
 
 let resources = {
     // collectible resources
@@ -86,8 +87,10 @@ let sectors = {
                 subtitle: 'Corridor Test Subtitle',
                 doors: ['H-01', 'H-02', 'H-03', 'H-04', 'H-05', 'H-06'],
                 locked: 'true',
-                actionButtons: ['Tube', 'Hole'],
-                buyButtons: ['Chisel']
+                actionButtonsOn: ['Tube', 'Hole'],
+                actionButtonsOff: [],
+                buyButtonsOn: ['Chisel'],
+                buyButtonsOff: []
             },
             'H-01': {
                 name: 'H-01',
@@ -96,8 +99,10 @@ let sectors = {
                 subtitle: 'Corridor Test Subtitle',
                 doors: ['H-00'],
                 locked: 'false',
-                actionButtons: ['Search', 'Activate', 'Deactivate'],
-                buyButtons: ['Repair_Console']
+                actionButtonsOn: ['Search', 'Activate', 'Deactivate'],
+                actionButtonsOff: [],
+                buyButtons: ['Repair_Console'],
+                buyButtonsOff: []
             },
             'H-02': {
                 name: 'H-02',
@@ -106,8 +111,10 @@ let sectors = {
                 subtitle: 'Room 2',
                 doors: ['H-00'],
                 locked: 'true',
-                actionButtons: [],
-                buyButtons: []
+                actionButtonsOn: [],
+                actionButtonsOff: [],
+                buyButtons: [],
+                buyButtonsOff: []
             },
             'H-03': {
                 name: 'H-03',
@@ -116,8 +123,10 @@ let sectors = {
                 subtitle: 'Room 3',
                 doors: ['H-00'],
                 locked: 'true',
-                actionButtons: [],
-                buyButtons: []
+                actionButtonsOn: [],
+                actionButtonsOff: [],
+                buyButtons: [],
+                buyButtonsOff: []
             },
             'H-04': {
                 name: 'H-04',
@@ -126,8 +135,10 @@ let sectors = {
                 subtitle: 'Room 4',
                 doors: ['H-00'],
                 locked: 'true',
-                actionButtons: [],
-                buyButtons: []
+                actionButtonsOn: [],
+                actionButtonsOff: [],
+                buyButtons: [],
+                buyButtonsOff: []
             },
             'H-05': {
                 name: 'H-05',
@@ -136,8 +147,10 @@ let sectors = {
                 subtitle: 'Room 5',
                 doors: ['H-00'],
                 locked: 'true',
-                actionButtons: [],
-                buyButtons: []
+                actionButtonsOn: [],
+                actionButtonsOff: [],
+                buyButtons: [],
+                buyButtonsOff: []
             },
             'H-06': {
                 name: 'H-06',
@@ -146,8 +159,10 @@ let sectors = {
                 subtitle: 'Your Room',
                 doors: ['H-00'],
                 locked: 'true',
-                actionButtons: [],
-                buyButtons: []
+                actionButtonsOn: [],
+                actionButtonsOff: [],
+                buyButtons: [],
+                buyButtonsOff: []
             }
         }
     }
