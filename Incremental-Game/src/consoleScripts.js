@@ -35,23 +35,19 @@ function runScript(e){
 }
 
 // Turns the console display on.
-function activateConsole(consoleID){
-    if (consoles[consoleID.substring(0,consoleID.length-1)].repaired === true) {
-        updateLog("The console buzzes to life.");
-        let cTi = document.getElementById("consoleTitle");
-        let cDisp = document.getElementById("consoleDisplay");
-        let cInp = document.getElementById("consoleInput");
-        cDisp.innerHTML = 'Enter Commands or type help for more information.';
-        cInp.value = '>';
-        cTi.innerHTML = "Console " + consoleID.substring(0, consoleID.length - 1) + ".";
-        cTi.style.display = "block";
-        cInp.style.display = "block";
-        cDisp.style.display = "block";
-        let audio = document.getElementById("powerOn");
-        audio.play();
-    } else {
-        updateLog("The console is dead.");
-    }
+function ActivateAction(consoleID){
+    updateLog("The console buzzes to life.");
+    let cTi = document.getElementById("consoleTitle");
+    let cDisp = document.getElementById("consoleDisplay");
+    let cInp = document.getElementById("consoleInput");
+    cDisp.innerHTML = 'Enter Commands or type help for more information.';
+    cInp.value = '>';
+    cTi.innerHTML = "Console " + consoleID.substring(0, consoleID.length - 1) + ".";
+    cTi.style.display = "block";
+    cInp.style.display = "block";
+    cDisp.style.display = "block";
+    let audio = document.getElementById("powerOn");
+    audio.play();
 }
 
 // Turns the console off.

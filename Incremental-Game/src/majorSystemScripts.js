@@ -8,32 +8,37 @@ function mainLoop(){	/* Major game loop logic goes in here */
 function updateLog(txt) {
 	let ul = document.getElementById("logList");
 	let li = document.createElement("li");
-	if (txt.charAt(0) === ">"){
-		li.setAttribute("class", "announcement");
-		txt = (txt.substring(1,txt.length));
-	} else if (txt.charAt(0) === "~") {
-		li.setAttribute("class", "assistant");
-		txt = (txt.substring(1,txt.length));
-	} else if (txt.charAt(0) === "#") {
-		li.setAttribute("class", "effect");
-		txt = (txt.substring(1,txt.length));
-	} else if (txt.charAt(0) === "?") {
-		li.setAttribute("class", "speaker");
-		txt = (txt.substring(1,txt.length));
-	} else {
-		li.setAttribute("class", "logEntry");
+	if (txt.charAt(0) === ">") {
+        alert('Here');
+        $(li).attr({"class": "announcement"});
+    } else if (txt.charAt(0) === "~") {
+        $(li).attr({"class": "assistant"});
+    } else if (txt.charAt(0) === "#") {
+        $(li).attr({"class": "effect"});
+    } else {
+	    txt = '-'+txt;
+	    $(li).attr({"class":"logEntry"});
 	}
+    txt = (txt.substring(1,txt.length));
 	li.appendChild(document.createTextNode(txt));
-	li.setAttribute("timeCreated", getCreationTime());
-	li.setAttribute("opacity", "1");
+    $(li).attr({"timeCreated":getCreationTime()});
 	ul.insertBefore(li, ul.childNodes[0]);
 	fullLog.push(txt);
+    fadeOut();
+}
+
+function fadeOut() {
+    let ul = document.getElementById("logList");
+    let logEntries = ul.getElementsByTagName("li");
+    for (let i = 0; i < logEntries.length; i++) {
+            (logEntries[i]).style.opacity = ((1-i*0.10)+0.3).toString();
+    }
 }
 
 function openDoor(doorID) {
     let door = document.getElementById(doorID+'C') ;
     if (door.getAttribute("islocked") === 'true') {
-        updateLog("Door's heavy. Wont budge. " + "The code " + doorID + " is printed just above the door.");
+        updateLog("Door's heavy. Wont budge. The code " + doorID + " is printed just above the door.");
     } else {
         changeView(doorID);
         checkDisplay();
@@ -74,7 +79,7 @@ function buttonDisable(buttonId, t){
 }
 
 function buttonDisablePerm(buttonId){
-	var buttonPressed = document.getElementById(buttonId);
+	let buttonPressed = document.getElementById(buttonId);
 	buttonPressed.setAttribute("onclick", "");
 	buttonPressed.classList.remove("actionButton");
 	buttonPressed.classList.add("actionButtonOff");

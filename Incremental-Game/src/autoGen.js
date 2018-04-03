@@ -20,6 +20,10 @@ function genSector(){
 function newRoom(areaCode, roomCode, numberOfRooms) {
     let newRoom = {};
     let doors = [];
+    let ABon = [];
+    let ABoff = ['TestABOff'];
+    let BBon = ['TestBBOn'];
+    let BBoff = ['TestBBOff'];
     newRoom['name'] = areaCode + '-' + roomCode;
     if (roomCode === 0) {
         newRoom['type'] = 'corridor';
@@ -29,14 +33,18 @@ function newRoom(areaCode, roomCode, numberOfRooms) {
     } else if (roomCode === 1) {
         newRoom['type'] = 'console';
         newRoom['doors'] = [areaCode+'-'+0];
-        newRoom['actionButtonsOn'] = 'Activate';
-        newRoom['actionButtonsOn'] = 'Deactivate';
-        newRoom['actionButtonsOn'] = 'Search';
+        ABon.push('Activate');
+        ABon.push('Deactivate');
+        ABon.push('Search');
     } else {
         newRoom['type'] = 'standard';
         newRoom['doors'] = [areaCode+'-'+0];
     }
-    newRoom['locked'] = 'true';
+    newRoom['actionButtonsOn'] = ABon;
+    newRoom['actionButtonsOff'] = ABoff;
+    newRoom['buyButtonsOn'] = BBon;
+    newRoom['buyButtonsOff'] = BBoff;
+    newRoom['locked'] = 'false';
     newRoom['title'] = 'Test';
     newRoom['subtitle'] = 'Test';
     return newRoom;
@@ -49,6 +57,7 @@ function showRooms(sectorName) {
     generateViews(sectorObj, keys);
     for (let i = 0; i < keys.length; i++) {
         showDoors(sectorObj,keys,i);        // Generates the doors.
+        showActionButtons(sectorObj, keys[i]);
     }
     setDoorStatus(sectorObj, keys);
 }
@@ -99,6 +108,54 @@ function generateViews(sectorObj, keys){
         lvp.append(lab);
         vcm.append(rvp);
         rvp.append(rab);
+    }
+}
+
+// Gen action buttons
+function showActionButtons(sectorObj, thisRoom){
+    alert(sectorObj[thisRoom]);
+    let actionOn = sectorObj[thisRoom].actionButtonsOn;
+    let actionOff = sectorObj[thisRoom].actionButtonsOff;
+    let buyOn = sectorObj[thisRoom].buyButtonsOn;
+    let buyOff = sectorObj[thisRoom].buyButtonsOff;
+    let lAB = document.getElementById('lab' + thisRoom);
+    let rAB = document.getElementById('rab' + thisRoom);
+
+    for (let i = 0; i < longLen(actionOn,buyOn); i++){
+        if (actionOn[i] != null){
+            let ab = document.createElement('div');
+            let abText = document.createElement('p');
+            $(ab).attr({'id':actionOn[i], 'class':'actionButton', 'onclick':actionOn[i]+'Action(this.id)'});
+            abText.innerHTML = actionOn[i];
+            lAB.append(ab);
+            ab.append(abText);
+        }
+        if (buyOn[i] != null){
+            let ab = document.createElement('div');
+            let abText = document.createElement('p');
+            $(ab).attr({'id':buyOn[i], 'class':'actionButton', 'onclick':'attemptBuy("'+buyOn[i]+'")'});
+            abText.innerHTML = buyOn[i];
+            rAB.append(ab);
+            ab.append(abText);
+        }
+    }
+    for (let j = 0; j < longLen(actionOff,buyOff); j++){
+        if (actionOff[j] != null) {
+            let ab = document.createElement('div');
+            let abText = document.createElement('p');
+            $(ab).attr({'id':actionOff[j], 'class':'actionButtonOff'});
+            abText.innerHTML = actionOff[j];
+            lAB.append(ab);
+            ab.append(abText);
+        }
+        if (buyOff[j] != null){
+            let ab = document.createElement('div');
+            let abText = document.createElement('p');
+            $(ab).attr({'id': buyOff[j], 'class': 'actionButtonOff',});
+            abText.innerHTML = buyOff[j];
+            rAB.append(ab);
+            ab.append(abText);
+        }
     }
 }
 

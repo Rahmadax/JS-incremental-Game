@@ -6,3 +6,11 @@ function arrayContains(s, array)
 {
     return (array.indexOf(s) > -1);
 }
+
+function longLen(arr1, arr2){
+    if (arr1.length > arr2.length){
+        return arr1.length;
+    } else {
+        return arr2.length;
+    }
+}
