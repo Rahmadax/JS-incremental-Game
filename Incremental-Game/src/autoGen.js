@@ -29,6 +29,9 @@ function newRoom(areaCode, roomCode, numberOfRooms) {
     } else if (roomCode === 1) {
         newRoom['type'] = 'console';
         newRoom['doors'] = [areaCode+'-'+0];
+        newRoom['actionButtonsOn'] = 'Activate';
+        newRoom['actionButtonsOn'] = 'Deactivate';
+        newRoom['actionButtonsOn'] = 'Search';
     } else {
         newRoom['type'] = 'standard';
         newRoom['doors'] = [areaCode+'-'+0];
@@ -108,6 +111,7 @@ function showDoors(sectorObj,keys,k) {
     let n = thisRoom.name;
     for (let i = thisRoom.doors.length; i > 0; i--) {
         let door = document.createElement('li');
+        let tag = document.createElement('p');
         if (thisRoom.type === 'corridor') {
             let newn = n.substring(0, n.length - 1) + (i);
             $(door).attr({
@@ -117,6 +121,7 @@ function showDoors(sectorObj,keys,k) {
             'relatedCont':(sectorObj[keys[0]].name.substring(0,3)),
              'onclick':    'openDoor("'+newn+'")'
             });
+            tag.innerHTML = 'A room';
         } else {
             $(door).attr({
             'id':       (n.substring(0, n.length) + 'R'),
@@ -124,10 +129,10 @@ function showDoors(sectorObj,keys,k) {
             'type':     thisRoom.type,
             'onclick':  'openDoor("'+n.substring(0, n.length-1)+'0")'
             });
+            tag.innerHTML = 'Corridor';
             door.setAttribute('conRoom',sectorObj[keys[0]].name);
         }
-        let tag = document.createElement('p');
-        tag.innerHTML = thisRoom.type;
+
         door.append(tag);
         buyBar.append(door);
     }
@@ -185,7 +190,7 @@ function genTab(viewName, viewLink){
     newTab.setAttribute('class', 'tabButtons');
     let newTabText = document.createElement('p');
     newTabText.setAttribute('onclick', 'changeView("'+viewLink+'")');
-    newTabText.innerHTML = capFirst(name);
+    newTabText.innerHTML = 'Sector ' + capFirst(name);
     newTab.style.backgroundColor = 'grey';
     ul.appendChild(newTab);
     newTab.append(newTabText);

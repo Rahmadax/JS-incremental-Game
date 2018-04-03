@@ -27,21 +27,20 @@ function updateLog(txt) {
 	li.setAttribute("timeCreated", getCreationTime());
 	li.setAttribute("opacity", "1");
 	ul.insertBefore(li, ul.childNodes[0]);
+	fullLog.push(txt);
 }
 
 function openDoor(doorID) {
-    let door = document.getElementById(doorID);
-    let conRoom = doorID
-    if (door.getAttribute("isLocked") === 'true') {
-        updateLog("Door's heavy. Wont budge. " + "The code " + doorID.substring(0, doorID.length - 1) + " is printed just above the door.");
+    let door = document.getElementById(doorID+'C') ;
+    if (door.getAttribute("islocked") === 'true') {
+        updateLog("Door's heavy. Wont budge. " + "The code " + doorID + " is printed just above the door.");
     } else {
-        changeView(conRoom);
+        changeView(doorID);
         checkDisplay();
     }
 }
 
 function changeView(conRoom) {
-    alert(conRoom);
 	let nextRoom = document.getElementById(conRoom);
 	let mvps = document.getElementsByClassName("mainPanelView");
 	for (let i = 0; i < mvps.length; i++) {
@@ -52,17 +51,17 @@ function changeView(conRoom) {
 }
 
 function getCreationTime(){
-	var d = new Date();
+	let d = new Date();
 	return (d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + ' ' 
 	+ d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
 }
 
 function buttonDisable(buttonId, t){
-	var timesRun = 0;
-	var buttonPressed = document.getElementById(buttonId);
+	let timesRun = 0;
+	let buttonPressed = document.getElementById(buttonId);
 	buttonPressed.classList.remove("actionButton");
 	buttonPressed.classList.add("actionButtonOff");
-	var interval = setInterval(function(){
+	let interval = setInterval(function(){
 		if(timesRun === 1){
 			buttonPressed.classList.remove("actionButtonOff");
 			buttonPressed.classList.add("actionButton");

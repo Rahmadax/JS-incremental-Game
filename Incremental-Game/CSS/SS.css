@@ -19,24 +19,26 @@ body {
 
 /* ---------- Background containers ---------- */
 #wrapper {
+    width:100%;
 	background-color: #929FAD;
+    display: inline-block;
 }
 
 #content {
+    margin-left:10%;
+    margin-right: 10px;
+    float: left;
 	height: 95%;
-	width: 97%;
+	width: 65%;
 	background-color: #929FAD;
-	max-width: 1000px;
-	margin: auto;
-	overflow:auto
-	
+	max-width: 800px;
 }
 
 /* ---------- Center container Stuff ---------- */
 #gameContainer {
 	float:left;
 	height: 98%;
-	width: 74%;
+	width: 100%;
 	background-color: #929FAD;
 }
 
@@ -60,7 +62,7 @@ body {
 }
 
 
-#topConsole {
+#console {
 	height: 210px;
 	width: 200px;
 	position: relative;
@@ -316,10 +318,10 @@ body {
 	float:left;
 	display:inline-block;
 	height: 960px;
-	width: 24%;
+	width: 20%;
 	background-color: #929FAD;
-    overflow:auto;
-    margin: auto auto auto 10px;
+    margin-right: 5%;
+    margin-top: 10px;
 }
 
 #logBox {

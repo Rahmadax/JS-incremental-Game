@@ -1,5 +1,6 @@
 remainingSectors = ['B','C','D','E','F','G','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W'];
 reservedSectors = ['A','H','X','Y','Z'];
+consoleSectors = ['H'];
 
 let resources = {
     // collectible resources
@@ -79,6 +80,8 @@ let roomStore = {
 
 let sectors = {
     'H': {
+        power: true,
+        oxygen: true,
         room: {
             'H-00': {
                 name: 'H-00',
@@ -87,9 +90,9 @@ let sectors = {
                 subtitle: 'Corridor Test Subtitle',
                 doors: ['H-01', 'H-02', 'H-03', 'H-04', 'H-05', 'H-06'],
                 locked: 'true',
-                actionButtonsOn: ['Tube', 'Hole'],
+                actionButtonsOn: [],
                 actionButtonsOff: [],
-                buyButtonsOn: ['Chisel'],
+                buyButtonsOn: [],
                 buyButtonsOff: []
             },
             'H-01': {
@@ -99,9 +102,9 @@ let sectors = {
                 subtitle: 'Corridor Test Subtitle',
                 doors: ['H-00'],
                 locked: 'false',
-                actionButtonsOn: ['Search', 'Activate', 'Deactivate'],
+                actionButtonsOn: ['Search'],
                 actionButtonsOff: [],
-                buyButtons: ['Repair_Console'],
+                buyButtons: [],
                 buyButtonsOff: []
             },
             'H-02': {
@@ -159,7 +162,7 @@ let sectors = {
                 subtitle: 'Your Room',
                 doors: ['H-00'],
                 locked: 'true',
-                actionButtonsOn: [],
+                actionButtonsOn: ['Tube'],
                 actionButtonsOff: [],
                 buyButtons: [],
                 buyButtonsOff: []
@@ -167,3 +170,5 @@ let sectors = {
         }
     }
 };
+
+let fullLog = [];

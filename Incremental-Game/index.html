@@ -10,25 +10,25 @@
 		<script src="src/tableData.js"></script>
         <script src="src/autoGen.js"></script>
         <script src="src/smallUtilScripts.js"></script>
+
 	</head>
 
 	<body>
-    <audio>
+        <audio>
 	<audio id = "alarm" class = "audio" src="Audio/Alarm.ogg" ></audio>
 	<audio id = "unlock" class = "audio" src="Audio/unlock.ogg"></audio>
 	<audio id = "darkness" class = "audio" src="Audio/darkness.ogg"></audio>
 	<audio id = "powerOn" class = "audio" src="Audio/powerOn.ogg"></audio>
 	<audio id = "monster" class = "audio" src="Audio/monster.ogg"></audio>
     </audio>
-
 		<div id = "wrapper">
 			<div id = "content">
 				<div id = "gameContainer">
-					<div id = "topConsole" style = display:block > 
-						<p id = "consoleTitle" style = display:block>hello</p>
+					<div id = "console" style = display:block >
+						<p id = "consoleTitle" style = display:block>Console</p>
 						<p id = "consoleDisplay" style = display:block></p>
 						<p></p>
-						<input type = "text" id = "consoleInput" size = 23 maxlength = 40 onkeypress="return runScript(event)" style = display:none> </input>
+						<input type = "text" id = "consoleInput" size = 23 maxlength = 40 onkeypress="return runScript(event)" style = display:block> </input>
 					</div>
 					
 					<div class = "topBox">
@@ -41,14 +41,6 @@
 						<ul id = "tabs">
 							<li id = "testContainer" class = "tabButtons" isVisible = "true"  style = display:block >
 								<p onclick = changeView("testView") isVisible = "true">Test Page</p>
-							</li>
-							
-							<li id = "roomContainer" class = "tabButtons" isVisible = "true" style = display:block>
-								<p onclick = changeView("roomView")>Your Room</p>
-							</li>
-							
-							<li id = "consoleContainer" class = "tabButtons" isVisible = "true" style = display:none>
-								<p onclick = changeView("C-H120")>Console Room</p>
 							</li>
 						</ul>
 						<div id = "divider"> </div>
@@ -96,40 +88,17 @@
 								</div>
 							</div>
 						</div>
-							<!-- Room View -->
-							<div id = "roomView" class = "mainPanelView" isVisible = "false"  style = display:none relatedCont = "roomContainer"; lifeSupport = 100>
-								<div class = "viewContainerTitle"> 
-									<p class = "panelTitle">The Room</p>
-									<p class = "panelSubTitle"></p>
-								</div>
-
-								<div class = "viewContainerMain">
-									<div class = "leftViewPanel">
-										<ul class = "actionBar" id = "roomActionBar">
-										</ul>
-									</div>
-									
-									<div class = "rightViewPanel">
-										<ul class = "actionBar" id = "roomBuyBar">
-										</ul>
-									</div>
-								</div>
-							</div>
-
 						</div>
                     </div>
                         <!---------- Main Panel Views end here --------->
                 </div>
             </div>
 
-            <div id = "logContainer">
-                <div id = "logBox">
-                    <ul id = "logList">
-                        </ul>
+            <div id = "logContainer" style="display:block">
+                <div id = "logBox" style="display:block">
+                    <ul id = "logList" style="display: block">
+                    </ul>
                 </div>
-            </div>
-            <div id = "foot">
-                <p>hello</p>
             </div>
         </div>
 	</body>
