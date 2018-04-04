@@ -8,6 +8,7 @@
 		<script src="src/resourceEvents.js"></script>
 		<script src="src/firstRoomEvents.js"></script>
         <script src="src/autoGen.js"></script>
+		<script src="src/showGen.js"></script>
         <script src="src/smallUtilScripts.js"></script>
         <script src="src/combat.js"></script>
 
@@ -68,16 +69,16 @@
 							<div class = "viewContainerMain">
 								<div class = "leftViewPanel">
 									<ul class = "actionBar">
-										<li id = "alarmAB" class = "actionButton" onclick = genSector(); style = display:block >
+										<li id = "alarmAB" class = "actionButton" onclick = buildAndShow(); style = display:block >
 											<p>Test Rand Sector</p>
 										</li>
 
                                         <li id = "testAB" class = "actionButton" onclick = genCombatScreen(); style = display:block >
-                                            <p>Test Sector H</p>
+                                            <p>Test Combat Screen</p>
                                         </li>
 
-										<li id = "feelAB" class = "actionButton" onclick = updateLog(getStoryPrompt("feelAB")) timesClicked = 0 style = display:block >
-											<p>Feel Around</p>
+										<li id = "feelAB" class = "actionButton" onclick = showSector('H-0') timesClicked = 0 style = display:block >
+											<p>Gen Sector H</p>
 										</li>
 										
 										<li id = "flashAB" class = "actionButton" onclick = lightsOn() isVisible = "false"  style = display:none>

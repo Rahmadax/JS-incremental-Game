@@ -1,11 +1,4 @@
 
-setInterval(mainLoop, 10); /* The game tick speed. */
-
-function mainLoop(){
-      /* Major game loop logic goes in here */
-    updateElements();
-}
-
 function updateLog(txt) {
 	let ul = document.getElementById("logList");
 	let li = document.createElement("li");
@@ -44,24 +37,21 @@ function fadeOut() {
 
 function openDoor(doorID) {
     let door = document.getElementById(doorID);
-    if (door.getAttribute("islocked") === 'true') {
+    let index = doorID.indexOf('>');
+    if (door.getAttribute("isLocked") === 'true') {
         updateLog("Door's heavy. Wont budge. The code " + doorID + " is printed just above the door.");
     } else {
-        if (doorID.substring(doorID.length-1, doorID.length) === 'R'){
-            changeView(doorID.substring(0,doorID.length-2)+'0');
-        } else {
-            changeView(doorID.substring(0, doorID.length - 1));
-        }
+        changeView(doorID.substring(index+1, doorID.length));
     }
 }
 
-function changeView(conRoom) {
-	let nextRoom = document.getElementById(conRoom);
+function changeView(nextRoom) {
+	let nextRoomEle = document.getElementById(nextRoom);
 	let mvps = document.getElementsByClassName("mainPanelView");
 	for (let i = 0; i < mvps.length; i++) {
-		mvps[i].setAttribute("isVisible", 'false');
-	}
-	nextRoom.setAttribute("isVisible", 'true');
+        mvps[i].setAttribute('isVisible', 'false');
+    }
+    nextRoomEle.setAttribute('isVisible', 'block');
 }
 
 function buttonDisable(buttonId){
@@ -86,12 +76,16 @@ function buttonDisablePerm(buttonId){
 	buttonPressed.classList.add("actionButtonOff");
 }
 
-function updateElements() {
-    showResources();
-    showCoreDisplay();
+
+<!-- -------- Main Loop -------- -->
+setInterval(updateElements, 20); /* The game tick speed. */
+
+function updateElements() {  //Main loop logic here.
+    updateResourceDisplay();
+    updateCoreDisplay();
 }
 
-function showCoreDisplay(){
+function updateCoreDisplay(){
 	let mvps = document.getElementsByClassName("mainPanelView");
 	for (let i = 0; i < mvps.length; i++) {
 		if (mvps[i].getAttribute("isVisible") === 'false')
@@ -115,7 +109,7 @@ function showCoreDisplay(){
 	}
 }
 
-function showResources(){
+function updateResourceDisplay(){
     $('#resBar').empty();
     let resTab = document.getElementById('resBar');
     let keys = Object.keys(resources);
