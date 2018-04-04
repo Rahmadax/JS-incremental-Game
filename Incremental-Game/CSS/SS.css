@@ -1,56 +1,69 @@
-
 /* ---------- HTML file info  ---------- */
 html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  font-size: 11pt;
-  height: 100%;
-  line-height: 1.3em;
-  margin: 0;
-  padding: 0;
-  border-width: 0;
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    height: 100%;
+    line-height: 1.3em;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    background-color: #929FAD;
 }
 
 
 /* ---------- Background containers ---------- */
 #wrapper {
-	height:100%;
+    height:100%;
     width:100%;
-	background-color: #929FAD;
+    background-color: #929FAD;
     display: inline-block;
 }
 
 #content {
-    margin-left:10%;
-    margin-right: 10px;
-    float: left;
-	height: 95%;
-	width: 65%;
-	background-color: #929FAD;
-	max-width: 800px;
+    height: 95%;
+    width: 60%;
+    background-color: #929FAD;
+    max-width: 700px;
 }
+
+@media only screen and (max-width: 768px) {
+    #content {
+        float: left;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    #content {
+        margin-left: 20%;
+        float: left;
+    }
+}
+
+
 
 /* ---------- Center container Stuff ---------- */
 #gameContainer {
-	float:left;
-	height: 98%;
-	width: 100%;
-	background-color: #929FAD;
+    float:left;
+    height: 98%;
+    width: 100%;
+    background-color: #929FAD;
 }
 
 .topBox {
-	height: 96px;
-	width: 450px;
-	position: relative;
-	float: right;
-	margin-top: 10px;
-	background-color: #929FAD;
-	border: solid white 1px;
+    height: 210px;
+    width: 45%;
+    position: relative;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #929FAD;
+    border: solid white 1px;
 }
 
 .resourceCounter{
@@ -62,22 +75,26 @@ body {
     display: inline-block;
 }
 
+.resBar{
+    list-style-type: none;
+}
+
 
 #console {
-	height: 210px;
-	width: 200px;
-	position: relative;
-	float: left;
-	margin-top: 10px;
-	margin-left: 10px;
-	border: double white 3px;
-	background-color: #151515;
+    height: 210px;
+    width: 200px;
+    position: relative;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: double white 3px;
+    background-color: #151515;
 }
 
 #consoleTitle {
     margin: 0;
     font-family: Courier New, monospace;
-	color: #1ec503 ;
+    color: #1ec503 ;
     padding: 0 5px;
     font-size: 9pt;
 }
@@ -85,20 +102,20 @@ body {
 #consoleDisplay {
     margin: 0;
     font-family: Courier New, monospace;
-	color: #1ec503 ;
+    color: #1ec503 ;
     padding: 0 5px;
     font-size: 9pt;
 }
 
 #consoleInput {
-	padding-left: 5px;
-	padding-right: 5px;
-	background-color: #151515;
-	color: #1ec503;
-	font-size: 9pt;
-	border: none;
-	}
-	
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #151515;
+    color: #1ec503;
+    font-size: 9pt;
+    border: none;
+}
+
 *:focus {
     outline: none;
 }
@@ -106,101 +123,101 @@ body {
 
 /* ----- Lower Half ----- */
 #mainPanelContainer {
-	margin-left: 10px;
-	margin-top: 40px;
-	float: right;
-	height: 600px;
-	width: 98%;
-	background-color: #929FAD;
-	border: solid white 1px;
-	text-align: center;
+    margin-left: 10px;
+    margin-top: 20px;
+    float: right;
+    height: 600px;
+    width: 98%;
+    background-color: #929FAD;
+    border: solid white 1px;
+    text-align: center;
 }
 
 #divider {
-	width: 50%;
-	margin-left: 25%;
-	margin-top: 30px;
-	height: 1px;
-	background-color: white;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 30px;
+    height: 1px;
+    background-color: white;
 }
 
 #mainPanelView {
-	height: 92%;
-	width: 100%;
-	background-color: #929FAD;
-	border: solid white 3px;
+    height: 92%;
+    width: 100%;
+    background-color: #929FAD;
+    border: solid white 3px;
 }
 
 .tabContainer{
-	display: inline-block;
-	float: left;
-	width: 130px;
-	height: 43px;
+    display: inline-block;
+    float: left;
+    width: 130px;
+    height: 43px;
     white-space: nowrap;
     cursor: pointer;
-	margin-left: 1px;
-	margin-right: 1px;
-	list-style-type: none;
+    margin-left: 1px;
+    margin-right: 1px;
+    list-style-type: none;
 }
 
 #tabs {
-	width: 100%;
-	height: 30px;
+    width: 100%;
+    height: 30px;
 }
 
 .tabButtons {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #tabs li {
-	float: left;
-	display: inline-block;
+    float: left;
+    display: inline-block;
     width: 16%;
-	height: 30px;
-	margin-top: 4px;
-	margin-left: 4px;
-	border: solid white 1px;
+    height: 30px;
+    margin-top: 4px;
+    margin-left: 4px;
+    border: solid white 1px;
 }
 
 #tabs p {
-	color: white;
-	position: relative;
-	bottom: 8px;
-	font-size: 1em;
+    color: white;
+    position: relative;
+    bottom: 8px;
+    font-size: 1em;
 }
 
 #tabs p:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 
 /* ---------- Main Panel ---------- */
 .mainPanelView {
-	height: 100%
+    height: 100%
 }
 
 .panelSubTitle {
-	color: white;
-	font-size: 12pt;
-	text-align: left;
-	margin-left: 20px;
+    color: white;
+    font-size: 12pt;
+    text-align: left;
+    margin-left: 20px;
 }
 
 .panelTitle {
-	text-align: left;
-	color: white;
-	font-size: 18pt;
-	font-weight: bold;
-	margin-left: 20px;
+    text-align: left;
+    color: white;
+    font-size: 18pt;
+    font-weight: bold;
+    margin-left: 20px;
 }
 
 /* ----------- Main Panel Views ---------- */
 
 .viewContainerTitle {
-	display:inline-block;
-	position: relative;
-	width: 100%;
-	height: 25%;
+    display:inline-block;
+    position: relative;
+    width: 100%;
+    height: 25%;
 }
 
 .actionBar{
@@ -209,19 +226,19 @@ body {
 }
 
 .actionButton {
-	display: inline-block;
-	color: white;
-	float: left;
-	height: 30px;
-	width: 120px;
+    display: inline-block;
+    color: white;
+    float: left;
+    height: 30px;
+    width: 120px;
     border: solid white 1px;
     white-space: nowrap;
     cursor: pointer;
-	margin-right: 5px;
-	margin-top: 5px;
-	position:relative;
-	bottom: 11px;
-	-webkit-touch-callout: none;
+    margin-right: 5px;
+    margin-top: 5px;
+    position:relative;
+    bottom: 11px;
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
 }
@@ -242,16 +259,16 @@ body {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .actionButton p, .actionButtonOff p {
     font-size: 15px;
     font-weight: normal;
-	position: relative;
-	bottom: 10px;
-	text-align: center;
-	-webkit-touch-callout: none;
+    position: relative;
+    bottom: 10px;
+    text-align: center;
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
 }
@@ -262,9 +279,9 @@ body {
     background-color: white;
     color: black;
     text-align: center;
-	border: solid black 1px;
+    border: solid black 1px;
     padding: 7px 0;
-	font-size:10px;
+    font-size:10px;
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
@@ -277,9 +294,9 @@ body {
 }
 
 .cooldown {
-	overflow:hidden;
-	width:50%;
-	z-index:-1;
+    overflow:hidden;
+    width:50%;
+    z-index:-1;
     position: absolute;
     top: 0;
     left: 0;
@@ -288,24 +305,24 @@ body {
 }
 
 .viewContainerMain {
-	display: inline-block;
-	position: relative;
-	width: 100%;
-	height: 75%;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 75%;
 }
 
 .leftViewPanel {
-	display: inline-block;
-	float: left;
-	width: 50%;
-	height: 100%;
+    display: inline-block;
+    float: left;
+    width: 50%;
+    height: 100%;
 }
 
 .rightViewPanel {
-	display: inline-block;
-	float: left;
-	width: 50%;
-	height: 83%;
+    display: inline-block;
+    float: left;
+    width: 50%;
+    height: 83%;
 }
 
 /* ----- Room View ----- */
@@ -316,72 +333,72 @@ body {
 
 /* ---------- Side container Stuff ---------- */
 #logContainer {
-	float:left;
-	display:inline-block;
-	height: 960px;
-	width: 20%;
-	background-color: #929FAD;
+    float:left;
+    display:inline-block;
+    height: 960px;
+    width: 20%;
+    background-color: #929FAD;
     margin-right: 5%;
     margin-top: 10px;
 }
 
 #logBox {
-	float:left;
-	height: 90%;
-	width:99%;
-	margin-top:10px;
-	overflow:hidden;
+    float:left;
+    height: 90%;
+    width:99%;
+    margin-top:10px;
+    overflow:hidden;
 }
 
 #logList {
-	list-style-type: none;
-	color: white;
+    list-style-type: none;
+    color: white;
 }
 
 .logEntry {
-	margin-top: 15px;
-	margin-left: -20px;
-	margin-right: 10px;
+    margin-top: 15px;
+    margin-left: -20px;
+    margin-right: 10px;
 }
 
 .announcement {
-	font-weight: bold;
-	color: #ff0000;
-	margin-top: 15px;
-	margin-left: -20px;
-	margin-right: 10px;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: bold;
+    color: #ff0000;
+    margin-top: 15px;
+    margin-left: -20px;
+    margin-right: 10px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .assistant {
-	font-weight: bold;
-	color: #00EEEE;
-	margin-top: 15px;
-	margin-left: -20px;
-	margin-right: 10px;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: bold;
+    color: #00EEEE;
+    margin-top: 15px;
+    margin-left: -20px;
+    margin-right: 10px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .effect {
-	font-weight: bold;
-	color: #a8a8a8;
-	margin-top: 15px;
-	margin-left: -20px;
-	margin-right: 10px;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: bold;
+    color: #a8a8a8;
+    margin-top: 15px;
+    margin-left: -20px;
+    margin-right: 10px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .speaker {
-	font-weight: bold;
-	color: #FFB90F;
-	margin-top: 15px;
-	margin-left: -20px;
-	margin-right: 10px;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: bold;
+    color: #FFB90F;
+    margin-top: 15px;
+    margin-left: -20px;
+    margin-right: 10px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 #corridorContainer{
-	background-color:black;
+    background-color:black;
 }
 
 #foot{
@@ -390,4 +407,23 @@ body {
     height: 5%;
     width:100%;
     background-color: dimgrey;
+}
+
+#combatBox {
+    position:absolute;
+    top:10px;
+    left:10px;
+    width:400px;
+    height: 500px;
+    z-index: 2;
+    border: solid white 1px;
+    background-color: grey;
+}
+
+#combatBoxheader{
+    padding: 10px;
+    cursor: move;
+    z-index: 3;
+    background-color: #2196F3;
+    color: #fff;
 }

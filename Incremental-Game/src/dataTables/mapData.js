@@ -2,10 +2,6 @@ remainingSectors = ['B','C','D','E','F','G','I','J','K','L','M','N','O','P','Q',
 reservedSectors = ['A','H','X','Y','Z'];
 consoleSectors = ['H'];
 
-
-
-
-
 let consoles = {
     'C-H120': {
         repaired : false

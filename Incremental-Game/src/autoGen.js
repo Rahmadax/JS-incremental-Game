@@ -44,7 +44,7 @@ function newRoom(areaCode, roomCode, numberOfRooms) {
     newRoom['actionButtonsOff'] = ABoff;
     newRoom['buyButtonsOn'] = BBon;
     newRoom['buyButtonsOff'] = BBoff;
-    newRoom['locked'] = 'false';
+    newRoom['locked'] = 'true';
     newRoom['title'] = 'Test';
     newRoom['subtitle'] = 'Test';
     return newRoom;
@@ -176,15 +176,15 @@ function showDoors(sectorObj,keys,k) {
             'class': 'actionButton',
             'type': thisRoom.type,
             'relatedCont':(sectorObj[keys[0]].name.substring(0,3)),
-             'onclick':    'openDoor("'+newn+'")'
+             'onclick':    'openDoor("'+newn+'C")'
             });
             tag.innerHTML = 'A room';
         } else {
             $(door).attr({
-            'id':       (n.substring(0, n.length) + 'R'),
+            'id':       (n + 'R'),
             'class':    'actionButton',
             'type':     thisRoom.type,
-            'onclick':  'openDoor("'+n.substring(0, n.length-1)+'0")'
+            'onclick':  'openDoor("'+n+'R")'
             });
             tag.innerHTML = 'Corridor';
             door.setAttribute('conRoom',sectorObj[keys[0]].name);

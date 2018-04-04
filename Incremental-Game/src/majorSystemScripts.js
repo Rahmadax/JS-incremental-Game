@@ -1,8 +1,9 @@
 
 setInterval(mainLoop, 10); /* The game tick speed. */
 
-function mainLoop(){	/* Major game loop logic goes in here */
-	checkDisplay();
+function mainLoop(){
+      /* Major game loop logic goes in here */
+    updateElements();
 }
 
 function updateLog(txt) {
@@ -27,6 +28,12 @@ function updateLog(txt) {
     fadeOut();
 }
 
+function getCreationTime(){
+    let d = new Date();
+    return (d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + ' '
+        + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
+}
+
 function fadeOut() {
     let ul = document.getElementById("logList");
     let logEntries = ul.getElementsByTagName("li");
@@ -36,12 +43,15 @@ function fadeOut() {
 }
 
 function openDoor(doorID) {
-    let door = document.getElementById(doorID+'C') ;
+    let door = document.getElementById(doorID);
     if (door.getAttribute("islocked") === 'true') {
         updateLog("Door's heavy. Wont budge. The code " + doorID + " is printed just above the door.");
     } else {
-        changeView(doorID);
-        checkDisplay();
+        if (doorID.substring(doorID.length-1, doorID.length) === 'R'){
+            changeView(doorID.substring(0,doorID.length-2)+'0');
+        } else {
+            changeView(doorID.substring(0, doorID.length - 1));
+        }
     }
 }
 
@@ -52,16 +62,9 @@ function changeView(conRoom) {
 		mvps[i].setAttribute("isVisible", 'false');
 	}
 	nextRoom.setAttribute("isVisible", 'true');
-	checkDisplay();
 }
 
-function getCreationTime(){
-	let d = new Date();
-	return (d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + ' ' 
-	+ d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
-}
-
-function buttonDisable(buttonId, t){
+function buttonDisable(buttonId){
 	let timesRun = 0;
 	let buttonPressed = document.getElementById(buttonId);
 	buttonPressed.classList.remove("actionButton");
@@ -73,9 +76,7 @@ function buttonDisable(buttonId, t){
 			clearInterval(interval);
 		}
 		timesRun += 1;
-	}, 2000); 
-	
-	checkDisplay();
+	}, 2000);
 }
 
 function buttonDisablePerm(buttonId){
@@ -85,46 +86,48 @@ function buttonDisablePerm(buttonId){
 	buttonPressed.classList.add("actionButtonOff");
 }
 
-function checkDisplay(){
-	mvps = document.getElementsByClassName("mainPanelView");
-	for (i = 0; i < mvps.length; i++) {
-		if (mvps[i].getAttribute("isVisible") === 'false'){
+function updateElements() {
+    showResources();
+    showCoreDisplay();
+}
+
+function showCoreDisplay(){
+	let mvps = document.getElementsByClassName("mainPanelView");
+	for (let i = 0; i < mvps.length; i++) {
+		if (mvps[i].getAttribute("isVisible") === 'false')
 			mvps[i].style.display = "none";
-		} else {
+		else
 			mvps[i].style.display = "block";
-		}
 	}
-	
-	tabConts = document.getElementsByClassName("tabButtons");
-	for (i = 0; i < tabConts.length; i++) {
-		if (tabConts[i].getAttribute("isVisible") === 'false'){
+	let tabConts = document.getElementsByClassName("tabButtons");
+	for (let i = 0; i < tabConts.length; i++) {
+		if (tabConts[i].getAttribute("isVisible") === 'false')
 			tabConts[i].style.display = "none";
-		} else {
+		else
 			tabConts[i].style.display = "block";
-		}
 	}
-	
-	actionButs = document.getElementsByClassName("actionButton");
-	for (i = 0; i < actionButs.length; i++) {
-		if (actionButs[i].getAttribute("isVisible") === 'false'){
-			actionButs[i].style.display = "none";
-		} else {
-			actionButs[i].style.display = "block";
-		}
-	}
-	
-	rCs = document.getElementsByClassName("resourceCounter");
-	for (i = 0; i < rCs.length; i++) {
-		if (rCs[i].getAttribute("isVisible") === 'false'){
+	let rCs = document.getElementsByClassName("resourceCounter");
+	for (let i = 0; i < rCs.length; i++) {
+		if (rCs[i].getAttribute("isVisible") === 'false')
 			rCs[i].style.display = "none";
-		} else {
+		else
 			rCs[i].style.display = "block";
-		}
 	}
 }
-/*
-<script>
-$('#alarmAB').click(testfunction());
-</script>
-function test(){  $( "#alarmAB" ).clone().appendTo( "#darkRoomAB" ); }
-*/
+
+function showResources(){
+    $('#resBar').empty();
+    let resTab = document.getElementById('resBar');
+    let keys = Object.keys(resources);
+    let values = Object.values(resources);
+    for (let i = 0; i < keys.length; i++){
+        if (values[i] > 0){
+            let li = document.createElement('li');
+            let txt = document.createElement('p');
+            li.setAttribute('class','resCounter');
+            txt.innerHTML = (keys[i] + ': ' + values[i]);
+            li.append(txt);
+            resTab.append(li);
+        }
+    }
+}

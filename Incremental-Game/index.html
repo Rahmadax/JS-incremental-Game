@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<link rel = "stylesheet" type="text/css" href="CSS/SS.css" media="screen" />
 		<script src="src/majorSystemScripts.js"></script>
 		<script src="src/consoleScripts.js"></script>
@@ -11,9 +11,10 @@
         <script src="src/smallUtilScripts.js"></script>
         <script src="src/combat.js"></script>
 
+
         <script src="src/dataTables/mapData.js"></script>
         <script src="src/dataTables/playerData.js"></script>
-        <script src="src/dataTables/itemData.js.js"></script>
+        <script src="src/dataTables/itemData.js"></script>
 
 	</head>
 
@@ -34,15 +35,18 @@
 						<p></p>
 						<input type = "text" id = "consoleInput" size = 23 maxlength = 40 onkeypress="return runScript(event)" style = display:block> </input>
 					</div>
-					
+
 					<div class = "topBox">
-                        <ul id = resourceBar>
+                        <ul id = resBar>
+
                         </ul>
 					</div>
 
 					<div id = "mainPanelContainer">
 						<!---------- Tabs go here ---------->
 						<ul id = "tabs">
+
+
 							<li id = "testContainer" class = "tabButtons" isVisible = "true"  style = display:block >
 								<p onclick = changeView("testView") isVisible = "true">Test Page</p>
 							</li>
@@ -68,7 +72,7 @@
 											<p>Test Rand Sector</p>
 										</li>
 
-                                        <li id = "testAB" class = "actionButton" onclick = showRooms('H'); style = display:block >
+                                        <li id = "testAB" class = "actionButton" onclick = genCombatScreen(); style = display:block >
                                             <p>Test Sector H</p>
                                         </li>
 
@@ -93,8 +97,8 @@
 							</div>
 						</div>
 						</div>
-                    </div>
                         <!---------- Main Panel Views end here --------->
+                    </div>
                 </div>
             </div>
 
